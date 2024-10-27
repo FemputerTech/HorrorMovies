@@ -1,1 +1,1 @@
-/** Data model for movies */
+/** Movie data model schema */

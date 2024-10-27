@@ -1,1 +1,1 @@
-/** Data model for users */
+/** User data model schema */

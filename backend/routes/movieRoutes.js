@@ -1,1 +1,1 @@
-/** Movie API routes */
+/** API routes for movies */
