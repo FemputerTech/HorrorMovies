@@ -11,7 +11,7 @@ const config = require("./config");
 const app = express();
 const PORT = config.port || process.env.PORT || 5000;
 
-app.use("/api/movies", movieRoutes);
+app.use("/movies", movieRoutes);
 
 // Start the server
 app.listen(PORT, () => {
