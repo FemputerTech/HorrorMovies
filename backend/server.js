@@ -1,14 +1,17 @@
 /** Main server */
-const express = require("express");
+// Load environment variables first
 const dotenv = require("dotenv");
+dotenv.config();
+
+const express = require("express");
 const movieRoutes = require("./routes/movieRoutes");
 const userRoutes = require("./routes/userRoutes");
 const config = require("./config");
 
-dotenv.config();
-
 const app = express();
-const PORT = config.port;
+const PORT = config.port || process.env.PORT || 5000;
+
+app.use("/api/movies", movieRoutes);
 
 // Start the server
 app.listen(PORT, () => {
