@@ -1,13 +1,21 @@
 /** API routes for movies */
 const express = require("express");
+const Movie = require("../models/movieModel");
 const axios = require("axios");
 const router = express.Router();
 
 // Get the API key from the environment variables
 const TMDB_BEARER_TOKEN = process.env.TMDB_BEARER_TOKEN;
 
-router.get("/", (req, res) => {
-  console.log("Welcome to my horror movie recommendation site");
+// Route to get the top 100 horror movies
+router.get("/top100", async (req, res) => {
+  try {
+    const topMovies = await Movie.find().sort({ vote_count: -1 }).limit(100);
+    res.json(topMovies);
+  } catch (error) {
+    console.error("Error fetching top horror movies:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 // Route to get a horror movie by title

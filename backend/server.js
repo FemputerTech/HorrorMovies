@@ -9,7 +9,6 @@ const schedule = require("node-schedule");
 const movieRoutes = require("./routes/movieRoutes");
 const userRoutes = require("./routes/userRoutes");
 const config = require("./config");
-const Movie = require("./models/movieModel");
 const { storeTop100 } = require("./services/movieService");
 
 const app = express();
@@ -33,15 +32,8 @@ const job = schedule.scheduleJob("0 59 23 L * *", async () => {
   }
 });
 
-// Define the landing page route
-app.get("/", async (req, res) => {
-  try {
-    const topMovies = await Movie.find().sort({ vote_count: -1 }).limit(100);
-    res.json(topMovies);
-  } catch (error) {
-    console.error("Error fetching top horror movies:", error);
-    res.status(500).send("Internal Server Error");
-  }
+app.get("/", (req, res) => {
+  console.log("Welcome to my horror movie recommendation site");
 });
 
 app.use("/movies", movieRoutes);
