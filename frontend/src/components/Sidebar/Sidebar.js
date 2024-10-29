@@ -3,7 +3,7 @@ import Logo from "./subcomponents/Logo";
 import MovieLists from "./subcomponents/MovieLists";
 import "./Sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({ onListClick }) => {
   const subgenres = [
     "Analog Horror",
     "Body Horror",
@@ -38,7 +38,11 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <Logo />
-      <MovieLists subgenres={subgenres} decades={decades} />
+      <MovieLists
+        subgenres={subgenres}
+        decades={decades}
+        onListClick={onListClick}
+      />
       <div className="settings">Settings</div>
     </div>
   );

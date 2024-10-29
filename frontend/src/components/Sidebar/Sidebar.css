@@ -36,3 +36,7 @@
   flex: 1;
   background-color: #484848;
 }
+
+.list-item {
+  cursor: pointer;
+}
