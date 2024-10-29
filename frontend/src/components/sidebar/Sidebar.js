@@ -1,8 +1,13 @@
 import React from "react";
-import "../../styles/Sidebar.css";
+import "./Sidebar.css";
 
 const Sidebar = () => {
-  return <div className="Sidebar">Sidebar</div>;
+  return (
+    <div className="sidebar">
+      <div className="logo-container">Creepy Cinema</div>
+      <div className="movie-lists">Movie Filters</div>
+    </div>
+  );
 };
 
 export default Sidebar;
