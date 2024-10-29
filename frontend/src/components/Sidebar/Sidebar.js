@@ -39,6 +39,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <Logo />
       <MovieLists decades={decades} subgenres={subgenres} />
+      <div className="settings">Settings</div>
     </div>
   );
 };
