@@ -1,5 +1,5 @@
-/* Navbar css */
-.Navbar {
+/* Header css */
+.Header {
   grid-row: 1;
   grid-column: 1 / -1;
   background-color: lightpink;
