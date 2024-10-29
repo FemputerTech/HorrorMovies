@@ -6,6 +6,7 @@ dotenv.config();
 const express = require("express");
 const mongoose = require("mongoose");
 const schedule = require("node-schedule");
+const cors = require("cors");
 const movieRoutes = require("./routes/movieRoutes");
 const userRoutes = require("./routes/userRoutes");
 const config = require("./config");
@@ -13,6 +14,9 @@ const { storeTop100 } = require("./services/movieService");
 
 const app = express();
 const PORT = config.port || process.env.PORT || 5000;
+
+// Middleware
+app.use(express.json());
 
 // Connect to MongoDb
 const dbURI = process.env.MONGODB_URI;
