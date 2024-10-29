@@ -4,19 +4,6 @@ import MovieLists from "./subcomponents/MovieLists";
 import "./Sidebar.css";
 
 const Sidebar = () => {
-  const decades = [
-    "1920s",
-    "1930s",
-    "1940s",
-    "1950s",
-    "1960s",
-    "1970s",
-    "1980s",
-    "1990s",
-    "2000s",
-    "2010s",
-    "2020s",
-  ];
   const subgenres = [
     "Analog Horror",
     "Body Horror",
@@ -35,10 +22,23 @@ const Sidebar = () => {
     "Vampire",
     "Zombie Feature",
   ];
+  const decades = [
+    "1920s",
+    "1930s",
+    "1940s",
+    "1950s",
+    "1960s",
+    "1970s",
+    "1980s",
+    "1990s",
+    "2000s",
+    "2010s",
+    "2020s",
+  ];
   return (
     <div className="sidebar">
       <Logo />
-      <MovieLists decades={decades} subgenres={subgenres} />
+      <MovieLists subgenres={subgenres} decades={decades} />
       <div className="settings">Settings</div>
     </div>
   );
