@@ -9,7 +9,10 @@
   background-color: lightgreen;
 }
 
-.logo-container {
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 10px;
   height: 60px;
   background-color: lightgoldenrodyellow;

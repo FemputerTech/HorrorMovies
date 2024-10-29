@@ -1,4 +1,5 @@
 import React from "react";
+import Logo from "./subcomponents/Logo";
 import MovieLists from "./subcomponents/MovieLists";
 import "./Sidebar.css";
 
@@ -36,7 +37,7 @@ const Sidebar = () => {
   ];
   return (
     <div className="sidebar">
-      <div className="logo-container">Creepy Cinema</div>
+      <Logo />
       <MovieLists decades={decades} subgenres={subgenres} />
     </div>
   );
