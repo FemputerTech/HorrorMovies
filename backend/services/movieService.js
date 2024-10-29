@@ -77,9 +77,6 @@ async function storeTop100() {
         console.error(`Error saving movie ${title}:`, error);
       }
     }
-    // else {
-    // console.log(`Movie ${title} already exists in the database.`);
-    // }
   }
   console.log("Top 100 horror movies stored in the database.");
 }
