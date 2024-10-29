@@ -1,13 +1,14 @@
 /** API routes for movies */
-// Horror is genre id: 27
-// Thriller is genre id: 53
-// Scifi is genre id: 878
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
 
 // Get the API key from the environment variables
 const TMDB_BEARER_TOKEN = process.env.TMDB_BEARER_TOKEN;
+
+router.get("/", (req, res) => {
+  console.log("Welcome to my horror movie recommendation site");
+});
 
 // Route to get a horror movie by title
 router.get("/:title", async (req, res) => {
