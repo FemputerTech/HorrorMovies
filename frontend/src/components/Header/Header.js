@@ -1,10 +1,13 @@
 import React from "react";
+import Auth from "./subcomponents/Auth";
 import "./Header.css";
 
-const Header = (props) => {
+const Header = ({ name }) => {
   return (
     <div className="header">
-      <div>Welcome back {props.name}!</div>
+      <div>Welcome back {name}!</div>
+      {/* <Login /> */}
+      <Auth />
     </div>
   );
 };
