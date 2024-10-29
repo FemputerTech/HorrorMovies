@@ -1,0 +1,6 @@
+/* Navbar css */
+.Navbar {
+  grid-row: 1;
+  grid-column: 1 / -1;
+  background-color: lightpink;
+}

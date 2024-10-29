@@ -1,0 +1,6 @@
+/* Footer css */
+.Footer {
+  grid-row: 3;
+  grid-column: 1 / -1;
+  background-color: lightskyblue;
+}
