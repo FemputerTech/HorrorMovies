@@ -2,5 +2,16 @@
 .header {
   grid-row: 1;
   grid-column: 2;
-  background-color: lightpink;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--sidebar);
+}
+
+.auth-button {
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
 }

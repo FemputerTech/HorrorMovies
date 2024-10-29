@@ -4,9 +4,17 @@
   margin: 0;
 }
 
+:root {
+  --text: #fff;
+  --body: #1f1f1f;
+  --sidebar: #181818;
+}
+
 .App {
   display: grid;
   grid-template-rows: 80px 1fr 100px;
   grid-template-columns: 200px 1fr;
-  gap: 10px;
+  color: var(--text);
+  background-color: var(--body);
+  /* gap: 10px; */
 }

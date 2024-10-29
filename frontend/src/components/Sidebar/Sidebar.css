@@ -6,7 +6,7 @@
   flex-direction: column;
   padding: 10px;
   min-height: 100vh;
-  background-color: lightgreen;
+  background-color: var(--sidebar);
 }
 
 .logo {
@@ -15,10 +15,24 @@
   align-items: center;
   margin-bottom: 10px;
   height: 60px;
-  background-color: lightgoldenrodyellow;
+  background-color: #484848;
 }
 
 .movie-lists {
+  /* flex: 1; */
+  margin-bottom: 10px;
+  background-color: #484848;
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+
+.filter-title {
+  margin: 20px 0 10px 0;
+}
+
+.settings {
   flex: 1;
-  background-color: lightgoldenrodyellow;
+  background-color: #484848;
 }
