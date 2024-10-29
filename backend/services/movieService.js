@@ -59,7 +59,7 @@ async function storeTop100() {
     if (!existingMovie) {
       // Create a new movie document
       const newMovie = new Movie({
-        id,
+        tmdb_id: id,
         title,
         release_date,
         original_language,
