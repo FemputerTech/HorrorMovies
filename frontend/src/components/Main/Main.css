@@ -4,3 +4,7 @@
   grid-column: 2;
   /* background-color: lightsalmon; */
 }
+
+.movie-image {
+  pointer-events: none;
+}
