@@ -7,6 +7,14 @@ const router = express.Router();
 // Get the API key from the environment variables
 const TMDB_BEARER_TOKEN = process.env.TMDB_BEARER_TOKEN;
 
+// Map of genres
+const genres = {
+  horror: 27,
+  mystery: 9648,
+  scifi: 878,
+  thriller: 53,
+};
+
 // Map of all the subgenre keywords
 const subgenreMap = {
   "analog-horror": 319324,
@@ -26,6 +34,19 @@ const subgenreMap = {
   vampire: 3133,
   werewolf: 12564,
   zombie: 12377,
+};
+
+// Map of all horror mood keywords
+const moodMap = {
+  creepy: 210458,
+  mystery: 316332,
+  nostalgia: 5609,
+  ghost: 162846,
+  witch: 616,
+  dreamlike: 232997,
+  ominous: 325839,
+  macabre: 162810,
+  halloween: 3335,
 };
 
 // Route to get the top 100 horror movies
