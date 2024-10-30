@@ -25,11 +25,16 @@
 }
 
 .filters {
+  list-style: none;
   margin-bottom: 20px;
 }
 
 .filter-title {
   margin: 20px 0 10px 0;
+}
+
+.list {
+  list-style: none;
 }
 
 .settings {
