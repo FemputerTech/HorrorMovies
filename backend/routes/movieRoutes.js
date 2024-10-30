@@ -1,11 +1,32 @@
 /** API routes for movies */
-const express = require("express");
 const Movie = require("../models/movieModel");
+const express = require("express");
 const axios = require("axios");
 const router = express.Router();
 
 // Get the API key from the environment variables
 const TMDB_BEARER_TOKEN = process.env.TMDB_BEARER_TOKEN;
+
+// Map of all the subgenre keywords
+const subgenreMap = {
+  "analog-horror": 319324,
+  "body-horror": 283085,
+  "creature-feature": 158126,
+  "folk-horror": 178856,
+  "found-footage": 163053,
+  "horror-comedy": 224636,
+  giallo: 272242,
+  gothic: 33505,
+  occult: 156174,
+  paranormal: 9853,
+  psychological: 295907,
+  slasher: 12339,
+  supernatural: 6152,
+  "survival-horror": 50009,
+  vampire: 3133,
+  werewolf: 12564,
+  zombie: 12377,
+};
 
 // Route to get the top 100 horror movies
 router.get("/top100", async (req, res) => {
@@ -18,22 +39,36 @@ router.get("/top100", async (req, res) => {
   }
 });
 
-// Route to get a horror movie by title
-router.get("/:title", async (req, res) => {
-  const title = req.params.title;
-  const url = `https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=true&language=en-US&page=1&with_genres=27%2C%2053%2C%20878`;
+// Route to get a horror movie by subgenre
+router.get("/subgenre/:subgenre", async (req, res) => {
+  const subgenre = req.params.subgenre.toLowerCase();
+  const subgenreId = subgenreMap[subgenre];
+
+  if (!subgenreId) {
+    return res.status(400).json({ error: "Subgenre not found" });
+  }
 
   try {
-    const response = await axios.get(url, {
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
-      },
-    });
-    res.json(response.data);
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/discover/movie`,
+      {
+        params: {
+          include_adult: true,
+          include_video: false,
+          language: "en-US",
+          sort_by: "vote_count.desc",
+          with_genres: 27,
+          with_keywords: subgenreId,
+          page: 1,
+        },
+        headers: {
+          Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
+        },
+      }
+    );
+    res.json(response.data.results);
   } catch (error) {
-    console.error("Error fetching top-rated horror movies:", error);
-    res.status(500).json({ message: "Error fetching top-rated horror movies" });
+    console.error(error);
   }
 });
 
