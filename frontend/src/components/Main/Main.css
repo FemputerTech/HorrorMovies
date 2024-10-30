@@ -17,6 +17,7 @@
   border-radius: 4px;
   width: 154px;
   transition: transform 0.3s ease;
+  transform-origin: center;
 }
 
 .movie-card:hover {

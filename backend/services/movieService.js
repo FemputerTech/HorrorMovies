@@ -5,6 +5,24 @@ const axios = require("axios");
 // Get the API key from the environment variables
 const TMDB_BEARER_TOKEN = process.env.TMDB_BEARER_TOKEN;
 
+// Function to fetch a horror movie's details
+async function fetchMovieDetails(movieId) {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}`,
+      {
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching details for movie ID ${movieId}:`, error);
+  }
+}
+
 // Function to fetch top 100 horror movies from TMDb API
 async function fetchTop100() {
   const genreId = 27;
@@ -75,4 +93,4 @@ async function storeTop100() {
   console.log("Top 100 horror movies stored in the database.");
 }
 
-module.exports = { fetchTop100, storeTop100 };
+module.exports = { fetchMovieDetails, fetchTop100, storeTop100 };

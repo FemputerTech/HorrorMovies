@@ -1,8 +1,8 @@
 /** API routes for movies */
-const Movie = require("../models/movieModel");
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
+const { fetchMovieDetails } = require("../services/movieService");
 
 // Get the API key from the environment variables
 const TMDB_BEARER_TOKEN = process.env.TMDB_BEARER_TOKEN;
@@ -49,18 +49,18 @@ const moodMap = {
   halloween: 3335,
 };
 
-// Route to get the top 100 horror movies
-router.get("/top100", async (req, res) => {
+// Route to get a horror movie's details
+router.get("/movie/:movieId", async (req, res) => {
+  const movieId = req.params.movieId;
   try {
-    const topMovies = await Movie.find().sort({ vote_count: -1 }).limit(100);
-    res.json(topMovies);
+    const details = await fetchMovieDetails(movieId);
+    res.json(details);
   } catch (error) {
-    console.error("Error fetching top horror movies:", error);
-    res.status(500).send("Internal Server Error");
+    console.error("Error fetching movie details:", error);
   }
 });
 
-// Route to get a horror movie by subgenre
+// Route to get a horror movie list by subgenre
 router.get("/subgenre/:subgenre", async (req, res) => {
   const subgenre = req.params.subgenre.toLowerCase();
   const subgenreId = subgenreMap[subgenre];
@@ -81,28 +81,39 @@ router.get("/subgenre/:subgenre", async (req, res) => {
             sort_by: "vote_count.desc",
             with_genres: 27,
             with_keywords: subgenreId,
-            page,
+            page: 1,
           },
           headers: {
+            accept: "application/json",
             Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
           },
         }
       );
 
-      const data = response.data.results
+      const movieIds = response.data.results
         .filter((movie) => movie.poster_path)
-        .map((movie) => ({
-          id: movie.id,
-          title: movie.title,
-          poster_path: movie.poster_path,
-        }));
-      // Push data to the movies array if there's a poster path
-      movies.push(...data);
+        .map((movie) => movie.id);
+
+      // Fetch details for each movie concurrently
+      const movieDetailsPromises = movieIds.map((id) => fetchMovieDetails(id));
+      const movieDetails = await Promise.all(movieDetailsPromises);
+
+      // Map the details to a simplified structure
+      movies = movieDetails.map((detail) => ({
+        id: detail.id,
+        title: detail.title,
+        poster_path: detail.poster_path,
+        overview: detail.overview,
+        language: detail.original_language,
+        popularity: detail.popularity,
+        release_data: detail.release_date,
+        runtime: detail.runtime,
+      }));
+      return res.json(movies);
     } catch (error) {
       console.error(error);
     }
   }
-  res.json(movies);
 });
 
 module.exports = router;
