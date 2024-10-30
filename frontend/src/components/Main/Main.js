@@ -30,13 +30,11 @@ const Main = ({ selectedList }) => {
   return (
     <div className="main">
       <h2 className="movie-list-heading">{selectedList.name}</h2>
-      <ul className="movies">
+      <div className="movies">
         {movies.map((movie) => (
-          <li key={movie.id}>
-            <MovieCard movie={movie} />
-          </li>
+          <MovieCard key={movie.id} movie={movie} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

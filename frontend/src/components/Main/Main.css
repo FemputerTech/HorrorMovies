@@ -5,6 +5,32 @@
   /* background-color: lightsalmon; */
 }
 
+.movies {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.movie-card {
+  background-color: #484848;
+  border-radius: 4px;
+  width: 154px;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
 .movie-image {
   pointer-events: none;
+  border-radius: 4px;
+}
+
+.movie-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
