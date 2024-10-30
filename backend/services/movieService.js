@@ -31,7 +31,7 @@ async function fetchTop100() {
       // Push the results to the topMovies array
       topMovies.push(...response.data.results);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
   return topMovies;
@@ -42,33 +42,27 @@ async function storeTop100() {
   const topMovies = await fetchTop100();
   for (const movie of topMovies) {
     const {
-      id,
       title,
+      poster_path,
       release_date,
+      overview,
       original_language,
       vote_count,
-      popularity,
-      overview,
-      poster_path,
-      backdrop_path,
-      genre_ids,
+      id,
     } = movie;
 
     // Check if the movie already exists
-    const existingMovie = await Movie.findOne({ id });
+    const existingMovie = await Movie.findOne({ tmdb_id: id });
     if (!existingMovie) {
       // Create a new movie document
       const newMovie = new Movie({
+        title: title,
+        poster: `http://image.tmdb.org/t/p/w200/${poster_path}`,
+        date: release_date,
+        description: overview,
+        language: original_language,
+        vote_count: vote_count,
         tmdb_id: id,
-        title,
-        release_date,
-        original_language,
-        vote_count,
-        popularity,
-        overview,
-        poster_path,
-        backdrop_path,
-        genre_ids,
       });
 
       try {
