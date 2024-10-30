@@ -6,10 +6,14 @@ import Footer from "./components/Footer/Footer";
 import "./App.css";
 
 function App() {
-  const [selectedList, setSelectedList] = useState(null);
+  const [selectedList, setSelectedList] = useState({
+    key: null,
+    name: null,
+    endpoint: null,
+  });
 
-  const handleListClick = (listName) => {
-    setSelectedList(listName);
+  const handleListClick = (listKey, listName, endpoint) => {
+    setSelectedList({ key: listKey, name: listName, endpoint });
   };
 
   return (
