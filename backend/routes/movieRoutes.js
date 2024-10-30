@@ -64,33 +64,45 @@ router.get("/top100", async (req, res) => {
 router.get("/subgenre/:subgenre", async (req, res) => {
   const subgenre = req.params.subgenre.toLowerCase();
   const subgenreId = subgenreMap[subgenre];
+  let movies = [];
 
   if (!subgenreId) {
     return res.status(400).json({ error: "Subgenre not found" });
   }
+  for (let page = 1; page <= 2; page++) {
+    try {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/discover/movie`,
+        {
+          params: {
+            include_adult: true,
+            include_video: false,
+            language: "en-US",
+            sort_by: "vote_count.desc",
+            with_genres: 27,
+            with_keywords: subgenreId,
+            page,
+          },
+          headers: {
+            Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
+          },
+        }
+      );
 
-  try {
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/discover/movie`,
-      {
-        params: {
-          include_adult: true,
-          include_video: false,
-          language: "en-US",
-          sort_by: "vote_count.desc",
-          with_genres: 27,
-          with_keywords: subgenreId,
-          page: 1,
-        },
-        headers: {
-          Authorization: `Bearer ${TMDB_BEARER_TOKEN}`,
-        },
-      }
-    );
-    res.json(response.data.results);
-  } catch (error) {
-    console.error(error);
+      const data = response.data.results
+        .filter((movie) => movie.poster_path)
+        .map((movie) => ({
+          id: movie.id,
+          title: movie.title,
+          poster_path: movie.poster_path,
+        }));
+      // Push data to the movies array if there's a poster path
+      movies.push(...data);
+    } catch (error) {
+      console.error(error);
+    }
   }
+  res.json(movies);
 });
 
 module.exports = router;
