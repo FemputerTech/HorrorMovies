@@ -18,7 +18,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port that the frontend runs on
-EXPOSE 3000
+EXPOSE 8080
 
 # Set the command to start the frontend using serve
-CMD ["npx", "serve", "-s", "build", "-l", "3000"]
+CMD ["npx", "serve", "-s", "build", "-l", "8080"]
