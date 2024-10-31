@@ -12,7 +12,7 @@ const Main = ({ selectedList }) => {
       if (selectedList.key) {
         try {
           const response = await fetch(
-            `${BACKEND_URL}movies/${selectedList.endpoint}/${selectedList.key}`
+            `${BACKEND_URL}/movies/${selectedList.endpoint}/${selectedList.key}`
           );
           if (!response.ok) {
             throw new Error("Failed to fetch movies");
