@@ -4,12 +4,10 @@ import "./Main.css";
 
 const Main = ({ selectedList }) => {
   const [movies, setMovies] = useState([]);
+  const [hoveredMovieId, setHoveredMovieId] = useState(null);
 
   useEffect(() => {
     const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-    console.log(
-      `Fetched url: ${BACKEND_URL}/movies/${selectedList.endpoint}/${selectedList.key}`
-    );
     // Function to fetch movies from the seleted endpoint
     const fetchMovies = async () => {
       if (selectedList.key) {
@@ -36,7 +34,23 @@ const Main = ({ selectedList }) => {
       <h2 className="movie-list-heading">{selectedList.name}</h2>
       <div className="movies">
         {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <div
+            key={movie.id}
+            className="movie-container"
+            onMouseEnter={() => setHoveredMovieId(movie.id)}
+            onMouseLeave={() => setHoveredMovieId(null)}
+          >
+            <img
+              className="movie-poster"
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w185${movie.poster_path}`
+                  : ""
+              }
+              alt={movie.title}
+            />
+            {hoveredMovieId === movie.id && <MovieCard movie={movie} />}
+          </div>
         ))}
       </div>
     </div>
