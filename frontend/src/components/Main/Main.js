@@ -7,6 +7,10 @@ const Main = ({ selectedList }) => {
 
   useEffect(() => {
     const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+    console.log(
+      `Fetching from: ${BACKEND_URL}/movies/${selectedList.endpoint}/${selectedList.key}`
+    );
+
     // Function to fetch movies from the seleted endpoint
     const fetchMovies = async () => {
       if (selectedList.key) {
