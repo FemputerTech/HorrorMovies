@@ -103,6 +103,7 @@ router.get("/subgenre/:subgenre", async (req, res) => {
         id: detail.id,
         title: detail.title,
         poster_path: detail.poster_path,
+        backdrop_path: detail.backdrop_path,
         overview: detail.overview,
         language: detail.original_language,
         popularity: detail.popularity,
