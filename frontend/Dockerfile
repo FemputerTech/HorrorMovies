@@ -14,8 +14,14 @@ RUN npm install
 # Copy the entire frontend directory into the container
 COPY . .
 
+# Set the environment variable for the React app
+ENV REACT_APP_BACKEND_URL=https://horrormovies-backend-754209826365.us-west1.run.app
+
 # Build the React application
 RUN npm run build
+
+# Install serve to run the application
+RUN npm install -g serve
 
 # Expose the port that the frontend runs on
 EXPOSE 8080
