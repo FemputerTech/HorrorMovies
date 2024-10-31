@@ -19,7 +19,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://horrormovies-frontend-754209826365.us-west1.run.app",
+      "https://horrormovies-754209826365.us-west1.run.app",
     ],
   })
 );
