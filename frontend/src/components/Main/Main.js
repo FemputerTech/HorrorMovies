@@ -6,12 +6,13 @@ const Main = ({ selectedList }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
     // Function to fetch movies from the seleted endpoint
     const fetchMovies = async () => {
       if (selectedList.key) {
         try {
           const response = await fetch(
-            `http://localhost:5000/movies/${selectedList.endpoint}/${selectedList.key}`
+            `${BACKEND_URL}movies/${selectedList.endpoint}/${selectedList.key}`
           );
           if (!response.ok) {
             throw new Error("Failed to fetch movies");

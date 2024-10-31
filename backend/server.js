@@ -17,7 +17,10 @@ const PORT = config.port || process.env.PORT || 5000;
 // Middleware
 app.use(
   cors({
-    origin: ["http://localhost:3000"], // Add other domains as needed
+    origin: [
+      "http://localhost:3000",
+      "https://horrormovies-frontend-754209826365.us-west1.run.app",
+    ],
   })
 );
 
