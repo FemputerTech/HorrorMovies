@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 const MovieLists = ({ decades, subgenres, onListClick }) => {
+  const [clickedSubgenre, setClickedSubgenre] = useState(null);
+  const [activeSubgenre, setActiveSubgenre] = useState(null);
+
+  const handleMouseDown = (key) => {
+    setClickedSubgenre(key);
+  };
+
+  const handleListClick = (key, label) => {
+    setActiveSubgenre(key);
+    setClickedSubgenre(null);
+    onListClick(key, label, "subgenre");
+  };
+
   return (
     <div className="movie-lists">
       <ul className="filters">
@@ -9,11 +22,12 @@ const MovieLists = ({ decades, subgenres, onListClick }) => {
           <ul className="list">
             {subgenres.map((subgenre, index) => (
               <li
-                className="list-item"
+                className={`list-item 
+                ${activeSubgenre === subgenre.key ? "active" : ""} 
+                ${clickedSubgenre === subgenre.key ? "clicked" : ""}`}
                 key={subgenre.key}
-                onClick={() =>
-                  onListClick(subgenre.key, subgenre.label, "subgenre")
-                }
+                onMouseDown={() => handleMouseDown(subgenre.key)}
+                onClick={() => handleListClick(subgenre.key, subgenre.label)}
               >
                 {subgenre.label}
               </li>

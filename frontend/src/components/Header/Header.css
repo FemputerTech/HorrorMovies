@@ -6,7 +6,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: var(--sidebar);
+  margin-right: 10px;
+  background-color: transparent;
+  border: 1px solid black; /*remove this later*/
 }
 
 .auth-button {

@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Creepster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -5,16 +8,30 @@
 }
 
 :root {
-  --text: #fff;
-  --body: #1f1f1f;
-  --sidebar: #181818;
+  --primary: #b20202;
+
+  --text: #d5d5d5;
+  --text-faint: #9b9b9b;
+  --text-active: #e1e1e1;
+
+  --font: "Inter", sans-serif;
+  --logo-font: "Creepster", system-ui;
+
+  --background: #191919;
+  --background-accent: #202020;
+
+  --neutral-1: #272727; /* click */
+  --neutral-2: #2c2c2c; /* hover and active */
+  --neutral-3: #333333; /* click on active */
+  --neutral-4: #383838; /* hover on active */
 }
 
 .App {
   display: grid;
   grid-template-rows: 80px 1fr 100px;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 250px 1fr;
+  background-color: var(--background);
   color: var(--text);
-  background-color: var(--body);
-  /* gap: 10px; */
+  font-family: var(--font);
+  font-size: 16px;
 }

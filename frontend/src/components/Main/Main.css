@@ -2,7 +2,7 @@
 .main {
   grid-row: 2;
   grid-column: 2;
-  /* background-color: lightsalmon; */
+  padding: 10px;
 }
 
 .movies {
@@ -13,7 +13,7 @@
 }
 
 .movie-card {
-  background-color: #484848;
+  background-color: var(--background-accent);
   border-radius: 4px;
   width: 154px;
   transition: transform 0.3s ease;
