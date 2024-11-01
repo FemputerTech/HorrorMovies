@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import Main from "../components/Main/Main";
 import Footer from "../components/Footer/Footer";
 
-const HomePage = () => {
+const HomePage = ({ isLoggedIn, setIsLoggedIn }) => {
   const [selectedList, setSelectedList] = useState({
     key: null,
     name: null,
@@ -16,7 +16,11 @@ const HomePage = () => {
   };
   return (
     <div className="home-page">
-      <Header name="Meghan" />
+      <Header
+        name="Meghan"
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+      />
       <Sidebar onListClick={handleListClick} />
       <Main selectedList={selectedList} />
       <Footer />
