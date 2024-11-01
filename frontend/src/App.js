@@ -1,28 +1,17 @@
-import React, { useState } from "react";
-import Header from "./components/Header/Header";
-import Sidebar from "./components/Sidebar/Sidebar";
-import Main from "./components/Main/Main";
-import Footer from "./components/Footer/Footer";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AuthPage from "./pages/AuthPage";
 import "./App.css";
 
 function App() {
-  const [selectedList, setSelectedList] = useState({
-    key: null,
-    name: null,
-    endpoint: null,
-  });
-
-  const handleListClick = (listKey, listName, endpoint) => {
-    setSelectedList({ key: listKey, name: listName, endpoint });
-  };
-
   return (
-    <div className="App">
-      <Header name="Meghan" />
-      <Sidebar onListClick={handleListClick} />
-      <Main selectedList={selectedList} />
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/auth" element={<AuthPage />} />
+      </Routes>
+    </Router>
   );
 }
 
