@@ -105,10 +105,12 @@ router.get("/subgenre/:subgenre", async (req, res) => {
         poster_path: detail.poster_path,
         backdrop_path: detail.backdrop_path,
         overview: detail.overview,
+        tagline: detail.tagline,
         language: detail.original_language,
         popularity: detail.popularity,
         release_data: detail.release_date,
         runtime: detail.runtime,
+        vote_average: detail.vote_average,
       }));
       return res.json(movies);
     } catch (error) {

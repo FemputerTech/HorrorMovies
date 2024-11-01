@@ -32,6 +32,7 @@
   pointer-events: none;
   border-radius: 4px 4px 0 0;
 }
+
 .movie-poster {
   pointer-events: none;
   border-radius: 4px;
@@ -53,10 +54,24 @@
   z-index: 10;
 }
 
+.movie-image {
+  width: 400px;
+  height: 230px;
+}
+
+.movie-content {
+  padding: 10px;
+}
+
 .movie-title {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.movie-details {
+  display: flex;
+  gap: 20px;
 }
 
 @keyframes grow {
