@@ -8,8 +8,8 @@ const Header = ({ name, isLoggedIn, setIsLoggedIn }) => {
   const handleAuth = () => {
     if (!isLoggedIn) {
       // User is not logged in
-      setIsLoggedIn(true);
-      navigate("/home");
+      // setIsLoggedIn(true);
+      navigate("/login");
     } else {
       // User is logged in
       setIsLoggedIn(false);
