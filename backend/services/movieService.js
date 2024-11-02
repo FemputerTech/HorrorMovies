@@ -5,7 +5,6 @@
  * of data handling from the controller, allowing for cleaner
  * and more maintainable code.
  */
-const Movie = require("../models/movieModel");
 const tmdbService = require("../services/tmdbService");
 
 class MovieService {
@@ -41,14 +40,11 @@ class MovieService {
         const movieDetails = await Promise.all(
           movieIds.map((id) => tmdbService.fetchMovieDetails(id))
         );
-
         movies.push(...this.formatMovieDetails(movieDetails));
       } catch (error) {
-        console.error(`Error fetching movies on page ${page}:`, error);
-        throw new Error("Failed to fetch movies from TMDB");
+        throw new Error("Failed to fetch movies by keyword");
       }
     }
-
     return movies;
   }
 

@@ -23,7 +23,6 @@ class TMDBService {
       });
       return response.data;
     } catch (error) {
-      console.error(`Error fetching details for movie ID ${movieId}:`, error);
       throw new Error("Failed to fetch movie details from TMDB");
     }
   }
@@ -44,8 +43,7 @@ class TMDBService {
       });
       return response.data.results;
     } catch (error) {
-      console.error("Error discovering movies:", error);
-      throw error;
+      throw new Error("Failed to discover movies from TMDB");
     }
   }
 }
