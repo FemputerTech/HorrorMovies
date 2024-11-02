@@ -1,4 +1,10 @@
-/** Movie data model schema */
+/**
+ * Movie Model:
+ * Defines the data structure for movies, representing movie-related
+ * data in the application. It interacts with the database and
+ * includes validation logic, as well as defining relationships
+ * between different data entities.
+ */
 const mongoose = require("mongoose");
 
 const movieSchema = new mongoose.Schema({
