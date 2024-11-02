@@ -7,7 +7,6 @@
  * or more service classes for core logic and data processing.
  */
 const movieService = require("../services/movieService");
-const tmdbService = require("../services/tmdbService");
 const validation = require("../utils/validation");
 const { handleError } = require("../utils/errorHandler");
 
@@ -21,7 +20,7 @@ class MovieController {
     }
 
     try {
-      const details = await tmdbService.fetchMovieDetails(movieId);
+      const details = await movieService.getMovieDetails(movieId);
       res.json(details);
     } catch (error) {
       handleError(res, error, "Failed to fetch movie details");

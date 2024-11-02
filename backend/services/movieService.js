@@ -17,6 +17,14 @@ class MovieService {
     };
   }
 
+  async getMovieDetails(movieId) {
+    try {
+      return await tmdbService.fetchMovieDetails(movieId); // Fetch details from tmdbService
+    } catch (error) {
+      throw new Error("Failed to fetch movie details");
+    }
+  }
+
   async getMoviesByKeyword(
     keywords,
     pages = 2,
