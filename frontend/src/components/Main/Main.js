@@ -21,7 +21,7 @@ const Main = ({ selectedList }) => {
           const data = await response.json();
           setMovies(data);
         } catch (error) {
-          console.error("Error fetching movies:", error);
+          console.error(error);
         }
       }
     };
