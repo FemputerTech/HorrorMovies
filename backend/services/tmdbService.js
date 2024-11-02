@@ -16,6 +16,12 @@ class TMDBService {
     };
   }
 
+  /**
+   * Fetch movie details by movie ID.
+   * @param {number} movieId - The ID of the movie to retrieve.
+   * @returns {object} The movie details as JSON.
+   * @throws {Error} Throws an error if fetching fails.
+   */
   async fetchMovieDetails(movieId) {
     try {
       const response = await axios.get(`${this.baseURL}/movie/${movieId}`, {
@@ -27,6 +33,15 @@ class TMDBService {
     }
   }
 
+  /**
+   * Discover movies based on specified filters.
+   * @param {object} params - The parameters for discovering movies.
+   * @param {string} params.genres - A comma-separated list of genre IDs.
+   * @param {string} params.keywords - A comma-separated list of keyword IDs.
+   * @param {number} params.page - The page number for pagination.
+   * @returns {Array<object>} An array of discovered movies.
+   * @throws {Error} Throws an error if fetching fails.
+   */
   async discoverMovies({ genres, keywords, page }) {
     try {
       const response = await axios.get(`${this.baseURL}/discover/movie`, {

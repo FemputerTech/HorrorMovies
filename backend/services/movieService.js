@@ -17,14 +17,28 @@ class MovieService {
     };
   }
 
+  /**
+   * Get movie details by movie ID.
+   * @param {number} movieId - The ID of the movie to retrieve.
+   * @returns {object} The movie details as JSON.
+   * @throws {Error} Throws an error if the movie is not found or if fetching fails.
+   */
   async getMovieDetails(movieId) {
     try {
-      return await tmdbService.fetchMovieDetails(movieId); // Fetch details from tmdbService
+      return await tmdbService.fetchMovieDetails(movieId);
     } catch (error) {
       throw new Error("Failed to fetch movie details");
     }
   }
 
+  /**
+   * Get movies by keyword and genre.
+   * @param {string} keywords - The keywords to search for movies.
+   * @param {number} pages - The number of pages of results to retrieve (default is 2).
+   * @param {Array<number>} genreIds - An array of genre IDs to filter by (default is horror).
+   * @returns {Array<object>} An array of movie details.
+   * @throws {Error} Throws an error if an error occurs while fetching movies.
+   */
   async getMoviesByKeyword(
     keywords,
     pages = 2,
@@ -56,6 +70,11 @@ class MovieService {
     return movies;
   }
 
+  /**
+   * Formats the movie details.
+   * @param {Array<object>} movies - The array of movies to format.
+   * @returns {Array<object>} The formatted movie details.
+   */
   formatMovieDetails(movies) {
     return movies.map(
       ({
