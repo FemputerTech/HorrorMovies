@@ -5,6 +5,7 @@ const express = require("express");
 const cors = require("cors");
 const config = require("./config");
 const mongoose = require("mongoose");
+const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const movieRoutes = require("./routes/movieRoutes");
 
@@ -30,6 +31,7 @@ mongoose
   .catch((error) => console.log("MongoDB connection error:", error));
 
 // Routes
+app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/movies", movieRoutes);
 

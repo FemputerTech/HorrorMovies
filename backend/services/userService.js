@@ -5,15 +5,13 @@
  * of data handling from the controller, allowing for cleaner
  * and more maintainable code.
  */
-const express = require("express");
 const User = require("../models/userModel");
-const bcrypt = require("bcrypt");
 
 class UserService {
   /**
    * Create a new user
    * @param {Object} userData - User data including email and password
-   * @returns
+   * @returns {Object} The created user document
    * @throws {Error} Throws an error if the user creation fails.
    */
   async createUser(userData) {
@@ -25,13 +23,10 @@ class UserService {
       throw new Error("User already exists");
     }
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
     // Create a new user instance
     const newUser = new User({
       email,
-      password: hashedPassword,
+      password,
     });
 
     // Save the user to the database

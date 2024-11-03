@@ -10,12 +10,12 @@ const controller = require("../controllers/userController");
 
 /**
  * Route to create a new user.
- * @route POST /signup
+ * @route POST /create
  * @param {object} user - The user details to create.
  * @returns {object} The response containing the created user as JSON.
  * @throws {Error} Throws an error if the user could not be created.
  */
-router.post("/signup", controller.createUser);
+router.post("/create", controller.createUser);
 
 /**
  * Route to update user details.

@@ -5,7 +5,7 @@
  * of data handling from the controller, allowing for cleaner
  * and more maintainable code.
  */
-const tmdbService = require("../services/tmdbService");
+const tmdbService = require("./tmdbService");
 
 class MovieService {
   constructor() {
