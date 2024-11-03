@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useUserContext } from "../../App";
 import "./Signup.css";
 
 const Signup = () => {
+  const { handleLogin } = useUserContext();
   const navigate = useNavigate();
   const location = useLocation();
   const email = location.state?.email || "";
@@ -24,8 +26,8 @@ const Signup = () => {
       });
       // On successful signup
       if (response.status === 200) {
-        console.log("success!");
-        navigate("/home");
+        handleLogin();
+        navigate("/home", { state: { id: email } });
       }
     } catch (error) {
       // Handle error response
@@ -82,7 +84,6 @@ const Signup = () => {
             </button>
           </form>
         </div>
-        <Link to="/login">Login</Link>
       </main>
       <Footer />
     </div>

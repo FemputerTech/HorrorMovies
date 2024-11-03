@@ -1,35 +1,36 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../App";
 import "./Header.css";
 
 const Header = () => {
-  // const navigate = useNavigate();
+  const { isLoggedIn, handleLogout } = useUserContext();
+  const navigate = useNavigate();
 
-  // const handleAuth = () => {
-  //   if (!isLoggedIn) {
-  //     // User is not logged in
-  //     // setIsLoggedIn(true);
-  //     navigate("/login");
-  //   } else {
-  //     // User is logged in
-  //     setIsLoggedIn(false);
-  //     navigate("/");
-  //   }
-  // };
+  const handleLoginLogout = () => {
+    if (!isLoggedIn) {
+      // User is not logged in, navigate to login page
+      navigate("/login");
+    } else {
+      // User is logged in, handle logout and navigate to get started page
+      handleLogout();
+      navigate("/");
+    }
+  };
 
   return (
     <div className="header">
       <div>
-        <span className="logo-title">Creepy Cinema</span>
-        {/* {isLoggedIn ? (
-          <span>Welcome back {name}!</span>
+        {isLoggedIn ? (
+          // <span>Welcome back {name}!</span>
+          <span>Welcome back!</span>
         ) : (
           <span className="logo-title">Creepy Cinema</span>
-        )} */}
+        )}
       </div>
-      {/* <button className="auth-button" onClick={handleAuth}>
+      <button className="auth-button" onClick={handleLoginLogout}>
         {isLoggedIn ? "Logout" : "Login"}
-      </button> */}
+      </button>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./GetStarted.css";
 
 const GetStarted = () => {
@@ -36,7 +36,6 @@ const GetStarted = () => {
             </button>
           </form>
         </div>
-        <Link to="/login">Login</Link>
       </main>
       <Footer />
     </div>

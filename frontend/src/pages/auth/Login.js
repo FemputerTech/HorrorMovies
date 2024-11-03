@@ -3,9 +3,11 @@ import axios from "axios";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../App";
 import "./Login.css";
 
 const Login = () => {
+  const { handleLogin } = useUserContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +25,8 @@ const Login = () => {
       });
       // On successful login
       if (response.status === 200) {
-        navigate("/home");
+        handleLogin();
+        navigate("/home", { state: { id: email } });
       }
     } catch (error) {
       // Handle error response
