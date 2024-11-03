@@ -1,18 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = ({ isLoggedIn, setIsLoggedIn }) => {
   const location = useLocation();
   const email = location.state?.email || "";
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  console.log(email);
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsLoggedIn(true);
-    navigate("/home", { state: { isLoggedIn: true } });
+
+    // Prepare the data for the POST request
+    const userData = {
+      email,
+      password,
+    };
+
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/users/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+      if (response.ok) {
+        setIsLoggedIn(true);
+        navigate("/home", { state: { isLoggedIn: true } });
+      } else {
+        const errorData = await response.json();
+        console.error("Error creating user:", errorData);
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+    }
   };
 
   return (
@@ -46,6 +70,7 @@ const SignUp = ({ isLoggedIn, setIsLoggedIn }) => {
             aria-label="password"
             autoComplete="new-password"
             required
+            onChange={(event) => setPassword(event.target.value)}
           />
           <button className="signup-button" type="submit">
             Sign Up
