@@ -18,7 +18,29 @@ class UserService {
    */
   async createUser(userData) {
     const { email, password } = userData;
-    console.log(email, password);
+
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      throw new Error("User already exists");
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user instance
+    const newUser = new User({
+      email,
+      password: hashedPassword,
+    });
+
+    // Save the user to the database
+    try {
+      const savedUser = await newUser.save();
+      return savedUser;
+    } catch (error) {
+      throw new Error("User creation failed: " + error.message);
+    }
   }
 
   async updateUser(userId, userData) {
