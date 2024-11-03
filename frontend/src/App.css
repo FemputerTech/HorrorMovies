@@ -39,6 +39,7 @@ body {
   grid-template-columns: 0 1fr;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .home-page {
