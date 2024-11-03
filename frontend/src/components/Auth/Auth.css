@@ -70,14 +70,22 @@
   gap: 26px;
 }
 
-.email-label {
+.username-container {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.email-text {
+.username-label {
   font-weight: 200;
+}
+
+.username {
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1em;
+  font-family: var(--font);
 }
 
 .password {

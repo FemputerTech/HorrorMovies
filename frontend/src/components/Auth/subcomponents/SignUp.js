@@ -7,6 +7,8 @@ const SignUp = ({ isLoggedIn, setIsLoggedIn }) => {
   const email = location.state?.email || "";
   const navigate = useNavigate();
 
+  console.log(email);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsLoggedIn(true);
@@ -23,11 +25,18 @@ const SignUp = ({ isLoggedIn, setIsLoggedIn }) => {
           </p>
         </div>
         <form className="signup" onSubmit={handleSubmit}>
-          <div className="email-label">
-            <label className="email-text" htmlFor="email">
+          <div className="username-container">
+            <label className="username-label" htmlFor="username">
               Email
             </label>
-            <span className="email-display">{email}</span>
+            <input
+              className="username"
+              id="username"
+              type="email"
+              value={email}
+              autoComplete="new-email"
+              readOnly
+            />
           </div>
           <input
             className="password"
@@ -35,6 +44,7 @@ const SignUp = ({ isLoggedIn, setIsLoggedIn }) => {
             type="password"
             placeholder="Enter your password"
             aria-label="password"
+            autoComplete="new-password"
             required
           />
           <button className="signup-button" type="submit">
