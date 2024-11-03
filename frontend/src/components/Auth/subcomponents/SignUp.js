@@ -20,7 +20,7 @@ const SignUp = ({ isLoggedIn, setIsLoggedIn }) => {
     const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     try {
-      const response = await fetch(`${BACKEND_URL}/users/create`, {
+      const response = await fetch(`${BACKEND_URL}/users/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
