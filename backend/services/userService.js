@@ -15,7 +15,7 @@ class UserService {
    * @throws {Error} Throws an error if the user creation fails.
    */
   async createUser(userData) {
-    const { email, password } = userData;
+    const { email } = userData;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -24,10 +24,7 @@ class UserService {
     }
 
     // Create a new user instance
-    const newUser = new User({
-      email,
-      password,
-    });
+    const newUser = new User(userData);
 
     // Save the user to the database
     try {
@@ -46,8 +43,8 @@ class UserService {
     console.log("deleting user...");
   }
 
-  async findUser(userId) {
-    console.log("finding user...");
+  async findUserByEmail(email) {
+    return await User.findOne({ email }); // Method to find a user by email
   }
 }
 

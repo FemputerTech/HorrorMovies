@@ -57,22 +57,6 @@ class UserController {
       handleError(res, error, "Failed to delete user");
     }
   }
-
-  /**
-   * Find a user by ID.
-   * @param {object} req - The request object containing user ID.
-   * @param {object} res - The response object.
-   * @returns {object} The response containing the user details as JSON.
-   */
-  async findUser(req, res) {
-    const { userId } = req.params;
-    try {
-      const user = await userService.findUser(userId);
-      res.json(user);
-    } catch (error) {
-      handleError(res, error, "User not found");
-    }
-  }
 }
 
 module.exports = new UserController();

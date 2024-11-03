@@ -36,13 +36,4 @@ router.put("/update/:userId", controller.updateUser);
  */
 router.delete("/delete/:userId", controller.deleteUser);
 
-/**
- * Route to find a user.
- * @route GET /find/:userId
- * @param {string} userId - The ID of the user to retrieve.
- * @returns {object} The response containing the user details as JSON.
- * @throws {Error} Throws an error if the user is not found.
- */
-router.get("/find/:userId", controller.findUser);
-
 module.exports = router;

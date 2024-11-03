@@ -18,7 +18,27 @@ class AuthService {
       // Create the user using the UserService
       return await userService.createUser(newUserData);
     } catch (error) {
-      throw new Error("Failed to create user: " + error.message);
+      throw new Error("Failed to signup: " + error.message);
+    }
+  }
+
+  async login(userData) {
+    try {
+      // Find the user by email
+      const user = await userService.findUserByEmail(userData.email);
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      // Compare the provided password with the stored hashed password
+      const isMatch = await bcrypt.compare(userData.password, user.password);
+      if (!isMatch) {
+        throw new Error("Invalid password");
+      }
+
+      // Will implement token stuff later
+    } catch (error) {
+      throw new Error("Failed to login: " + error.message);
     }
   }
 }

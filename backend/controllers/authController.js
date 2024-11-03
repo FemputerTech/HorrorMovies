@@ -13,7 +13,7 @@ class AuthController {
   async signup(req, res) {
     try {
       const user = await authService.signup(req.body);
-      res.json(user);
+      res.status(201).json({ user, message: "Signup successful" });
     } catch (error) {
       handleError(res, error, "Failed to signup");
     }
@@ -21,14 +21,17 @@ class AuthController {
 
   async login(req, res) {
     try {
-      const { user, token } = await authService.login(req.body);
-      res.json(user);
+      const user = await authService.login(req.body);
+      res.status(200).json({ user, message: "Login successful" });
     } catch (error) {
-      handleError(res, error, "Failed to signup");
+      handleError(res, error, "Failed to login");
     }
   }
 
-  async logout(req, res) {}
+  async logout(req, res) {
+    // will implement this later
+    res.status(200).json({ message: "Logout successful" });
+  }
 }
 
 module.exports = new AuthController();
