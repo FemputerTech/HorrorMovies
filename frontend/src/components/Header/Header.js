@@ -1,34 +1,35 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
-const Header = ({ name, isLoggedIn, setIsLoggedIn }) => {
-  const navigate = useNavigate();
+const Header = () => {
+  // const navigate = useNavigate();
 
-  const handleAuth = () => {
-    if (!isLoggedIn) {
-      // User is not logged in
-      // setIsLoggedIn(true);
-      navigate("/login");
-    } else {
-      // User is logged in
-      setIsLoggedIn(false);
-      navigate("/");
-    }
-  };
+  // const handleAuth = () => {
+  //   if (!isLoggedIn) {
+  //     // User is not logged in
+  //     // setIsLoggedIn(true);
+  //     navigate("/login");
+  //   } else {
+  //     // User is logged in
+  //     setIsLoggedIn(false);
+  //     navigate("/");
+  //   }
+  // };
 
   return (
     <div className="header">
       <div>
-        {isLoggedIn ? (
+        <span className="logo-title">Creepy Cinema</span>
+        {/* {isLoggedIn ? (
           <span>Welcome back {name}!</span>
         ) : (
           <span className="logo-title">Creepy Cinema</span>
-        )}
+        )} */}
       </div>
-      <button className="auth-button" onClick={handleAuth}>
+      {/* <button className="auth-button" onClick={handleAuth}>
         {isLoggedIn ? "Logout" : "Login"}
-      </button>
+      </button> */}
     </div>
   );
 };

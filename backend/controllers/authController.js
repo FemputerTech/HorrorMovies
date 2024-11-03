@@ -13,7 +13,7 @@ class AuthController {
   async signup(req, res) {
     try {
       const user = await authService.signup(req.body);
-      res.status(201).json({ user, message: "Signup successful" });
+      res.status(200).json({ user, message: "Signup successful" });
     } catch (error) {
       handleError(res, error, "Failed to signup");
     }

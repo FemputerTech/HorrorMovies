@@ -1,10 +1,10 @@
 /**
  * Error helper functions
  */
-function handleError(res, error, defaultMessage = "An error occurred") {
-  console.error(error);
-  const statusCode = error.response?.status || 500;
-  res.status(statusCode).json({ error: error.message || defaultMessage });
+function handleError(res, error, defaultMessage) {
+  console.error(error); // Log the error for debugging
+  const message = error.message || defaultMessage; // Fallback message
+  res.status(400).json({ message }); // Send a 400 status for client errors
 }
 
 module.exports = { handleError };

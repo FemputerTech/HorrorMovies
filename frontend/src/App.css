@@ -33,15 +33,6 @@ body {
   font-size: 16px;
 }
 
-.auth-page {
-  display: grid;
-  grid-template-rows: 80px 1fr 100px;
-  grid-template-columns: 0 1fr;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
 .home-page {
   display: grid;
   grid-template-rows: 80px 1fr 100px;

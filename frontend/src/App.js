@@ -1,29 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import AuthPage from "./pages/AuthPage";
+import GetStarted from "./pages/GetStarted";
+import Signup from "./pages/auth/Signup";
+import Login from "./pages/auth/Login";
+import Home from "./pages/Home";
+
 import "./App.css";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route
-            path="/*"
-            element={
-              <AuthPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-            }
-          />
-
-          <Route
-            path="/home"
-            element={
-              <HomePage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-            }
-          />
+          <Route path="/" element={<GetStarted />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </Router>
     </div>

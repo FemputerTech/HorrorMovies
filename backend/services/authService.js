@@ -36,7 +36,8 @@ class AuthService {
         throw new Error("Invalid password");
       }
 
-      // Will implement token stuff later
+      // Return the user data (will add a token here)
+      return user;
     } catch (error) {
       throw new Error("Failed to login: " + error.message);
     }
