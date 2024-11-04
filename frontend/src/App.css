@@ -33,6 +33,10 @@ body {
   font-size: 16px;
 }
 
+.error-message {
+  color: var(--primary);
+}
+
 .button {
   background-color: var(--primary);
   border: 2px solid black;
