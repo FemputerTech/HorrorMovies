@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Auth.css";
 
 const GetStarted = () => {
@@ -38,6 +38,15 @@ const GetStarted = () => {
               Get Started
             </button>
           </form>
+          <div className="link-container">
+            Don't want to sign up? <br />
+            <span>
+              <Link to="/home" className="link">
+                Click here
+              </Link>{" "}
+              to just browse.
+            </span>
+          </div>
         </div>
       </main>
       <Footer />

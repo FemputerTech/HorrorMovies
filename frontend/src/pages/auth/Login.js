@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../App";
 import "../../styles/Auth.css";
 
@@ -75,6 +75,15 @@ const Login = () => {
               Login
             </button>
           </form>
+          <div className="link-container">
+            Don't have an account? <br />
+            <span>
+              <Link to="/" className="link">
+                Click here
+              </Link>{" "}
+              to sign up.
+            </span>
+          </div>
         </div>
       </main>
       <Footer />

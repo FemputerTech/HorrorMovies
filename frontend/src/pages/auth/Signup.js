@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../App";
 import "../../styles/Auth.css";
 
@@ -78,10 +78,19 @@ const Signup = () => {
               required
               onChange={(event) => setPassword(event.target.value)}
             />
-            <button className="signup-button" type="submit">
+            <button className="button" id="signup-button" type="submit">
               Sign Up
             </button>
           </form>
+          <div className="link-container">
+            Already have an account? <br />
+            <span>
+              <Link to="/login" className="link">
+                Click here
+              </Link>{" "}
+              to login.
+            </span>
+          </div>
         </div>
       </main>
       <Footer />
