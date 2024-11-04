@@ -1,5 +1,5 @@
-/* Get Started css */
-.get-started-page {
+/* Login css */
+.login-page {
   display: grid;
   grid-template-rows: 80px 1fr 100px;
   grid-template-columns: 0 1fr;
@@ -8,7 +8,7 @@
   overflow-x: hidden;
 }
 
-.get-started-main {
+.login-main {
   grid-row: 2;
   grid-column: 2;
   display: flex;
@@ -18,7 +18,7 @@
   min-height: calc(100vh - 80px);
 }
 
-.get-started-container {
+.login-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -27,30 +27,33 @@
   border-radius: 4px;
   padding: 20px;
   width: 500px;
-  height: 300px;
   gap: 26px;
 }
 
-.get-started-title {
-  text-align: center;
+.login-title {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.email {
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 26px;
+}
+
+/* .username,
+.password {
   background-color: rgba(1, 1, 1, 0.2);
   border: 1px solid gray;
   border-radius: 4px;
   color: var(--text);
   font-size: 1em;
   padding: 20px 10px;
-  width: 250px;
-}
+} */
 
-.get-started-form {
-  display: flex;
-  gap: 10px;
-}
-
-.get-started-button {
+.login-button {
   background-color: var(--primary);
   border: none;
   border-radius: 4px;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { useNavigate } from "react-router-dom";
-import "./GetStarted.css";
+import "../styles/GetStarted.css";
 
 const GetStarted = () => {
   const [email, setEmail] = useState("");
@@ -18,9 +18,11 @@ const GetStarted = () => {
       <Header />
       <main className="get-started-main">
         <div className="get-started-container">
-          <h1 className="get-started-title">
-            Free Horror Movie Recommendation Site
-          </h1>
+          <div className="get-started-title">
+            <h1>Unlimited horror movie recommendations</h1>
+            <h2>It's completely free!</h2>
+            <p>Enter your email to unlock terrifying recommendations.</p>
+          </div>
           <form className="get-started-form" onSubmit={handleSubmit}>
             <input
               className="email"
@@ -28,10 +30,11 @@ const GetStarted = () => {
               type="email"
               placeholder="Email address"
               value={email}
+              autoComplete="email"
               required
               onChange={(event) => setEmail(event.target.value)}
             />
-            <button className="get-started-button" type="submit">
+            <button className="button" id="get-started-button" type="submit">
               Get Started
             </button>
           </form>

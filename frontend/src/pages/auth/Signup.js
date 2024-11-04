@@ -4,7 +4,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../App";
-import "./Signup.css";
+import "../../styles/Signup.css";
 
 const Signup = () => {
   const { handleLogin } = useUserContext();
@@ -61,11 +61,10 @@ const Signup = () => {
                 Email
               </label>
               <input
-                className="username"
+                className="signup-username"
                 id="username"
                 type="email"
                 value={email}
-                autoComplete="new-email"
                 readOnly
               />
             </div>

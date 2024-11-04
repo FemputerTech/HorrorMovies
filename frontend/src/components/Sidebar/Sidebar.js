@@ -1,7 +1,7 @@
 import React from "react";
-import Logo from "./subcomponents/Logo";
+import Logo from "../Logo";
 import MovieLists from "./subcomponents/MovieLists";
-import "./Sidebar.css";
+import "../../styles/components/Sidebar.css";
 
 const Sidebar = ({ onListClick }) => {
   const subgenres = [

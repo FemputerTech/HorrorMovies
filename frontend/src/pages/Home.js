@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import Main from "../components/Main/Main";
 import Footer from "../components/Footer/Footer";
 // import { useLocation } from "react-router-dom";
+import "../styles/Home.css";
 
 const Home = () => {
   // const location = useLocation();

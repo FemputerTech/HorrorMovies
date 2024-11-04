@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "./subcomponents/MovieCard";
-import "./Main.css";
+import "../../styles/components/Main.css";
 
 const Main = ({ selectedList }) => {
   const [movies, setMovies] = useState([]);

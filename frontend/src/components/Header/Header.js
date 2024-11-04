@@ -1,11 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import Logo from "../Logo";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useUserContext } from "../../App";
-import "./Header.css";
+import "../../styles/components/Header.css";
 
 const Header = () => {
   const { isLoggedIn, handleLogout } = useUserContext();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLoginLogout = () => {
     if (!isLoggedIn) {
@@ -24,11 +26,11 @@ const Header = () => {
         {isLoggedIn ? (
           // <span>Welcome back {name}!</span>
           <span>Welcome back!</span>
-        ) : (
-          <span className="logo-title">Creepy Cinema</span>
-        )}
+        ) : location.pathname !== "/home" ? (
+          <Logo />
+        ) : null}
       </div>
-      <button className="auth-button" onClick={handleLoginLogout}>
+      <button className="button" id="auth-button" onClick={handleLoginLogout}>
         {isLoggedIn ? "Logout" : "Login"}
       </button>
     </div>

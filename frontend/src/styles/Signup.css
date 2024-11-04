@@ -1,11 +1,45 @@
 /* Signup css */
 .signup-page {
+  position: relative;
   display: grid;
   grid-template-rows: 80px 1fr 100px;
   grid-template-columns: 0 1fr;
+  background-image: url("../../public/background.png");
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
+}
+
+.signup-page::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  content: "";
+  z-index: 1;
+}
+
+.signup-page::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top left,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.5) 70%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  content: "";
+  z-index: 2;
 }
 
 .signup-main {
@@ -14,7 +48,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--background-accent);
   min-height: calc(100vh - 80px);
 }
 
@@ -23,11 +56,11 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
   border-radius: 4px;
   padding: 20px;
   width: 500px;
   gap: 26px;
+  z-index: 3;
 }
 
 .signup-title {
@@ -53,12 +86,14 @@
   font-weight: 200;
 }
 
-.username {
+.signup-username {
   background-color: transparent;
   border: none;
   color: var(--text);
   font-size: 1em;
   font-family: var(--font);
+  outline: none;
+  margin-top: 4px;
 }
 
 .password {
@@ -68,6 +103,18 @@
   color: var(--text);
   font-size: 1em;
   padding: 20px 10px;
+}
+
+.password:focus {
+  outline-color: white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px rgba(1, 1, 1) inset !important;
+  -webkit-text-fill-color: var(--text);
 }
 
 .signup-button {
