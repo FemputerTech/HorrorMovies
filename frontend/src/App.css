@@ -3,6 +3,7 @@
 
 :root {
   --primary: #d30000;
+  --primary-muted: #ac0202;
 
   --text: #d5d5d5;
   --text-faint: #9b9b9b;
@@ -49,6 +50,7 @@ body {
 }
 
 .button:hover {
+  background-color: var(--primary-muted);
   box-shadow: none;
   cursor: pointer;
   transform: translate(2px, 2px);

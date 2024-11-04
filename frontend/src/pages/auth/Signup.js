@@ -4,7 +4,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../App";
-import "../../styles/Signup.css";
+import "../../styles/Auth.css";
 
 const Signup = () => {
   const { handleLogin } = useUserContext();
@@ -44,10 +44,10 @@ const Signup = () => {
   }
 
   return (
-    <div className="signup-page">
+    <div className="auth-page" id="signup-page">
       <Header />
-      <main className="signup-main">
-        <div className="signup-container">
+      <main className="auth-main">
+        <div className="auth-container" id="signup-container">
           <div className="signup-title">
             <h1>Joining Creepy Cinema is easy.</h1>
             <p>

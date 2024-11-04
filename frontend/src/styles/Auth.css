@@ -1,5 +1,5 @@
-/* Signup css */
-.signup-page {
+/* Auth pages css */
+.auth-page {
   position: relative;
   display: grid;
   grid-template-rows: 80px 1fr 100px;
@@ -10,7 +10,7 @@
   overflow-x: hidden;
 }
 
-.signup-page::before {
+.auth-page::before {
   position: absolute;
   top: 0;
   left: 0;
@@ -26,7 +26,7 @@
   z-index: 1;
 }
 
-.signup-page::after {
+.auth-page::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -42,7 +42,7 @@
   z-index: 2;
 }
 
-.signup-main {
+.auth-main {
   grid-row: 2;
   grid-column: 2;
   display: flex;
@@ -51,31 +51,83 @@
   min-height: calc(100vh - 80px);
 }
 
-.signup-container {
+.auth-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border-radius: 4px;
   padding: 20px;
-  width: 500px;
-  gap: 26px;
+  width: 700px;
+  gap: 16px;
   z-index: 3;
 }
 
-.signup-title {
+#signup-container,
+#login-container {
+  width: 500px;
+  gap: 26px;
+}
+
+.signup-title,
+.login-title {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.signup-form {
+.signup-form,
+.login-form {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 26px;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px rgba(1, 1, 1) inset !important;
+  -webkit-text-fill-color: var(--text);
+}
+
+/* ********************** Get Started css ********************** */
+.get-started-title {
+  text-align: center;
+}
+
+.get-started-title h1 {
+  font-size: 3.4em;
+  margin-bottom: 20px;
+}
+
+.get-started-title h2 {
+  font-size: 1.4em;
+  margin-bottom: 30px;
+}
+
+.email {
+  background-color: rgba(1, 1, 1, 0.5);
+  border: 1px solid gray;
+  border-radius: 4px;
+  color: var(--text);
+  font-size: 1em;
+  padding: 20px 10px;
+  width: 250px;
+}
+
+.email:focus {
+  outline-color: white;
+}
+
+.get-started-form {
+  display: flex;
+  gap: 10px;
+}
+
+/* ********************** Signup css ********************** */
 .username-container {
   display: flex;
   flex-direction: column;
@@ -109,14 +161,6 @@
   outline-color: white;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px rgba(1, 1, 1) inset !important;
-  -webkit-text-fill-color: var(--text);
-}
-
 .signup-button {
   background-color: var(--primary);
   border: none;
@@ -126,4 +170,20 @@ input:-webkit-autofill:active {
   font-size: 1.2em;
   font-family: var(--font);
   padding: 20px;
+}
+
+/* ********************** Login css ********************** */
+.login-username,
+.password {
+  background-color: rgba(1, 1, 1, 0.2);
+  border: 1px solid gray;
+  border-radius: 4px;
+  color: var(--text);
+  font-size: 1em;
+  padding: 20px 10px;
+}
+
+#login-button {
+  align-self: center;
+  width: 200px;
 }

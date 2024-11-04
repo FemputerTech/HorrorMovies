@@ -4,7 +4,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../App";
-import "../../styles/Login.css";
+import "../../styles/Auth.css";
 
 const Login = () => {
   const { handleLogin } = useUserContext();
@@ -42,17 +42,17 @@ const Login = () => {
     }
   }
   return (
-    <div className="login-page">
+    <div className="auth-page" id="login-page">
       <Header />
-      <main className="login-main">
-        <div className="login-container">
+      <main className="auth-main">
+        <div className="auth-container" id="login-container">
           <div className="login-title">
             <h1>Login to Creepy Cinema</h1>
           </div>
           {error && <p className="error-message">{error}</p>}
           <form className="login-form" action="POST" onSubmit={handleSubmit}>
             <input
-              className="username"
+              className="login-username"
               id="username"
               type="email"
               placeholder="Enter your email"
@@ -71,7 +71,7 @@ const Login = () => {
               required
               onChange={(event) => setPassword(event.target.value)}
             />
-            <button className="login-button" type="submit">
+            <button className="button" id="login-button" type="submit">
               Login
             </button>
           </form>

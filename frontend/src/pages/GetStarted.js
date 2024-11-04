@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { useNavigate } from "react-router-dom";
-import "../styles/GetStarted.css";
+import "../styles/Auth.css";
 
 const GetStarted = () => {
   const [email, setEmail] = useState("");
@@ -14,10 +14,10 @@ const GetStarted = () => {
   };
 
   return (
-    <div className="get-started-page">
+    <div className="auth-page" id="get-started-page">
       <Header />
-      <main className="get-started-main">
-        <div className="get-started-container">
+      <main className="auth-main">
+        <div className="auth-container" id="get-started-container">
           <div className="get-started-title">
             <h1>Unlimited horror movie recommendations</h1>
             <h2>It's completely free!</h2>
