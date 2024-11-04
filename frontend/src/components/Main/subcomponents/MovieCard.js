@@ -1,4 +1,5 @@
 import React from "react";
+import backDrop from "../../../assets/creepyCinemaBackDrop.png";
 
 const MovieCard = ({ movie }) => {
   return (
@@ -7,9 +8,9 @@ const MovieCard = ({ movie }) => {
         <img
           className="movie-backdrop"
           src={
-            movie.poster_path
+            movie.backdrop_path
               ? `https://image.tmdb.org/t/p/w400${movie.backdrop_path}`
-              : ""
+              : backDrop
           }
           alt={movie.title}
           referrerPolicy="strict-origin-when-cross-origin"

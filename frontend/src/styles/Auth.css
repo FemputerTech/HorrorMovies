@@ -4,7 +4,7 @@
   display: grid;
   grid-template-rows: 80px 1fr 100px;
   grid-template-columns: 0 1fr;
-  background-image: url("../../public/background.png");
+  background-image: url("../assets/background.png");
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
@@ -85,6 +85,26 @@
   gap: 26px;
 }
 
+.email,
+.login-username,
+.password {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid gray;
+  border-radius: 4px;
+  color: var(--text);
+  font-size: 1em;
+  padding: 20px 10px;
+}
+
+#email {
+  width: 250px;
+}
+
+.email:focus,
+.password:focus {
+  outline-color: white;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -106,20 +126,6 @@ input:-webkit-autofill:active {
 .get-started-title h2 {
   font-size: 1.4em;
   margin-bottom: 30px;
-}
-
-.email {
-  background-color: rgba(1, 1, 1, 0.5);
-  border: 1px solid gray;
-  border-radius: 4px;
-  color: var(--text);
-  font-size: 1em;
-  padding: 20px 10px;
-  width: 250px;
-}
-
-.email:focus {
-  outline-color: white;
 }
 
 .get-started-form {
@@ -148,19 +154,6 @@ input:-webkit-autofill:active {
   margin-top: 4px;
 }
 
-.password {
-  background-color: rgba(1, 1, 1, 0.2);
-  border: 1px solid gray;
-  border-radius: 4px;
-  color: var(--text);
-  font-size: 1em;
-  padding: 20px 10px;
-}
-
-.password:focus {
-  outline-color: white;
-}
-
 .signup-button {
   background-color: var(--primary);
   border: none;
@@ -173,15 +166,6 @@ input:-webkit-autofill:active {
 }
 
 /* ********************** Login css ********************** */
-.login-username,
-.password {
-  background-color: rgba(1, 1, 1, 0.2);
-  border: 1px solid gray;
-  border-radius: 4px;
-  color: var(--text);
-  font-size: 1em;
-  padding: 20px 10px;
-}
 
 #login-button {
   align-self: center;

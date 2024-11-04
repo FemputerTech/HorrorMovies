@@ -12,8 +12,7 @@
   --font: "Inter", sans-serif;
   --logo-font: "Creepster", system-ui;
 
-  --background: #191919;
-  --background-accent: #202020;
+  --background: #141414;
 
   --neutral-1: #272727; /* click */
   --neutral-2: #2c2c2c; /* hover and active */
@@ -36,7 +35,7 @@ body {
 
 .button {
   background-color: var(--primary);
-  border: 1px solid var(--text);
+  border: 2px solid black;
   border-radius: 4px;
   box-shadow: 4px 4px 1px rgba(213, 213, 213, 1);
   color: white;

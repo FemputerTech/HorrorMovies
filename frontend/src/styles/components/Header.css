@@ -2,13 +2,12 @@
 .header {
   grid-row: 1;
   grid-column: 2;
-  position: sticky;
+  /* position: sticky; */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 30px;
   margin-right: 10px;
-  /* background-color: var(--background); */
   background-color: transparent;
   width: 100%;
   top: 0;
