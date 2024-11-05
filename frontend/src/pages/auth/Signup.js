@@ -11,6 +11,8 @@ const Signup = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const email = location.state?.email || "";
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -21,13 +23,15 @@ const Signup = () => {
 
     try {
       const response = await axios.post(`${BACKEND_URL}/auth/signup`, {
+        firstName,
+        lastName,
         email,
         password,
       });
       // On successful signup
       if (response.status === 200) {
         handleLogin();
-        navigate("/home", { state: { id: email } });
+        navigate("/home", { state: { id: firstName } });
       }
     } catch (error) {
       // Handle error response
@@ -56,28 +60,68 @@ const Signup = () => {
           </div>
           {error && <p className="error-message">{error}</p>}
           <form className="signup-form" action="POST" onSubmit={handleSubmit}>
-            <div className="username-container">
-              <label className="username-label" htmlFor="username">
+            <div className="input-container">
+              <label className="label" htmlFor="first-name">
+                First Name
+              </label>
+              <input
+                className="first-name"
+                id="first-name"
+                name="firstName"
+                type="text"
+                placeholder="Enter your first name"
+                aria-label="first name"
+                onChange={(event) => setFirstName(event.target.value)}
+                autoComplete="given-name"
+                required
+              />
+            </div>
+            <div className="input-container">
+              <label className="label" htmlFor="last-name">
+                Last Name
+              </label>
+              <input
+                className="last-name"
+                id="last-name"
+                name="lastName"
+                type="text"
+                placeholder="Enter your last name"
+                aria-label="last name"
+                onChange={(event) => setLastName(event.target.value)}
+                autoComplete="family-name"
+                required
+              />
+            </div>
+            <div className="input-container">
+              <label className="label" htmlFor="username">
                 Email
               </label>
               <input
                 className="signup-username"
                 id="username"
+                name="username"
                 type="email"
                 value={email}
+                autoComplete="email"
                 readOnly
               />
             </div>
-            <input
-              className="password"
-              id="password"
-              type="password"
-              placeholder="Enter your password"
-              aria-label="password"
-              autoComplete="new-password"
-              required
-              onChange={(event) => setPassword(event.target.value)}
-            />
+            <div className="input-container">
+              <label className="label" htmlFor="password">
+                Password
+              </label>
+              <input
+                className="password"
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Enter your password"
+                aria-label="password"
+                onChange={(event) => setPassword(event.target.value)}
+                autoComplete="off"
+                required
+              />
+            </div>
             <button className="button" id="signup-button" type="submit">
               Sign Up
             </button>
