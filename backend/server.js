@@ -13,7 +13,7 @@ const movieRoutes = require("./routes/movieRoutes");
 const app = express();
 const PORT = config.port;
 
-// Middleware to configure the web API's security
+// CORS configuration (the web API's security)
 app.use(
   cors({
     origin: [
@@ -22,6 +22,8 @@ app.use(
     ],
   })
 );
+
+// Middleware to parse JSON bodies
 app.use(express.json());
 
 // Connect to MongoDb
@@ -30,9 +32,9 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((error) => console.log("MongoDB connection error:", error));
 
-// Routes
+// Route Handling
 app.use("/auth", authRoutes);
-app.use("/users", userRoutes);
+app.use("/user", userRoutes);
 app.use("/movies", movieRoutes);
 
 // Start the server

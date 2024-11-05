@@ -29,7 +29,7 @@ const Signup = () => {
         password,
       });
       // On successful signup
-      if (response.status === 200) {
+      if (response.status === 201) {
         handleLogin();
         navigate("/home", { state: { id: firstName } });
       }
