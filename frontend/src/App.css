@@ -13,6 +13,7 @@
   --logo-font: "Creepster", system-ui;
 
   --background: #141414;
+  --background-accent: #0a0a0a;
 
   --neutral-1: #272727; /* click */
   --neutral-2: #2c2c2c; /* hover and active */
@@ -31,6 +32,7 @@ body {
   color: var(--text);
   font-family: var(--font);
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 .error-message {
