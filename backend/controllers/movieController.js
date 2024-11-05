@@ -6,18 +6,24 @@
  * (or client) and the model. Inside the controller, we call the
  * TMDB service for core logic and data processing.
  */
-const movieService = require("../services/movieService");
+const tmdbService = require("../services/tmdbService");
 const validation = require("../utils/validation");
-const { handleError } = require("../utils/errorHandler");
 
 class MovieController {
-  /**
-   * Get horror movie details.
-   * @param {object} req - The request object containing parameters and data from the client.
-   * @param {object} res - The response object used to send data back to the client.
-   * @returns {object} The response containing the movie details as JSON.
-   * @throws {Error} Throws an error if the movie is not found.
-   */
+  constructor() {
+    this.genres = {
+      horror: 27,
+      mystery: 9648,
+      scifi: 878,
+      thriller: 53,
+    };
+
+    // Bind methods to the instance
+    this.getMovieDetails = this.getMovieDetails.bind(this);
+    this.getMoviesBySubgenre = this.getMoviesBySubgenre.bind(this);
+    this.getMoviesByKeyword = this.getMoviesByKeyword.bind(this);
+  }
+
   async getMovieDetails(req, res) {
     const { movieId } = req.params;
 
@@ -27,19 +33,16 @@ class MovieController {
     }
 
     try {
-      const details = await movieService.getMovieDetails(movieId);
+      const details = await tmdbService.fetchMovieDetails(movieId);
       res.json(details);
     } catch (error) {
-      handleError(res, error, "Failed to fetch movie details");
+      console.error("Error fetching movie details:", error);
+      return res
+        .status(500)
+        .json({ message: "Server error during movie details fetch" });
     }
   }
-  /**
-   * Get horror movies by subgenre.
-   * @param {object} req - The request object containing parameters and data from the client.
-   * @param {object} res - The response object used to send data back to the client.
-   * @returns {object} The response containing the movie details as JSON.
-   * @throws {Error} Throws an error if an error occurs while fetching movies.
-   */
+
   async getMoviesBySubgenre(req, res) {
     const { subgenre } = req.params;
     const { pages = 2 } = req.query;
@@ -48,18 +51,86 @@ class MovieController {
     if (!validation.validateSubgenre(subgenre)) {
       return res.status(400).json({ error: "Invalid subgenre" });
     }
+    if (isNaN(pages) || pages <= 0) {
+      return res.status(400).json({ error: "Invalid pages parameter" });
+    }
 
     const subgenreId = validation.subgenres[subgenre.toLowerCase()];
 
     try {
-      const movies = await movieService.getMoviesByKeyword(
-        subgenreId,
-        Number(pages)
-      );
+      const movies = await this.getMoviesByKeyword(subgenreId, Number(pages));
       res.json(movies);
     } catch (error) {
-      handleError(res, error, "Failed to fetch movies by subgenre");
+      console.error(`Error fetching movies with subgenre ${subgenre}:`, error);
+      return res
+        .status(500)
+        .json({ message: "Server error during subgenre fetch" });
     }
+  }
+
+  async getMoviesByKeyword(
+    keywords,
+    pages = 2,
+    genreIds = [this.genres.horror]
+  ) {
+    const movies = [];
+    for (let page = 1; page <= pages; page++) {
+      try {
+        const results = await tmdbService.discoverMovies({
+          genres: genreIds.join(","),
+          keywords: keywords,
+          page,
+        });
+
+        // Filter out movies without poster path
+        const movieIds = results
+          .filter((movie) => movie.poster_path)
+          .map((movie) => movie.id);
+
+        // Get the details of the movie
+        const movieDetails = await Promise.all(
+          movieIds.map((id) => tmdbService.fetchMovieDetails(id))
+        );
+        movies.push(...this.formatMovieDetails(movieDetails));
+      } catch (error) {
+        console.error(
+          `Failed to fetch movies by keyword on page ${page}:`,
+          error
+        );
+        throw new Error("Failed to fetch movies by keyword");
+      }
+    }
+    return movies;
+  }
+
+  formatMovieDetails(movies) {
+    return movies.map(
+      ({
+        id,
+        title,
+        poster_path,
+        backdrop_path,
+        overview,
+        tagline,
+        original_language,
+        popularity,
+        release_date,
+        runtime,
+        vote_average,
+      }) => ({
+        id,
+        title,
+        poster_path,
+        backdrop_path,
+        overview,
+        tagline,
+        language: original_language,
+        popularity,
+        release_date,
+        runtime,
+        vote_average,
+      })
+    );
   }
 }
 
