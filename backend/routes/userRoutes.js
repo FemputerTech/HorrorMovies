@@ -10,10 +10,10 @@ const userMovieRoutes = require("./userMovieRoutes");
 
 // User account management routes
 router.get("/:userId", userController.getUser);
-router.put("/update/:userId", userController.updateUser);
-router.delete("/delete/:userId", userController.deleteUser);
+router.put("/:userId/update", userController.updateUser);
+router.delete("/:userId/delete", userController.deleteUser);
 
 // User Movie Route Handling
-router.use("/movie", userMovieRoutes);
+router.use("/:userId/movies", userMovieRoutes);
 
 module.exports = router;

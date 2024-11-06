@@ -7,7 +7,7 @@ const express = require("express");
 const router = express.Router();
 const movieController = require("../controllers/movieController");
 
-router.get("/movie/:movieId", movieController.getMovieDetails);
+router.get("/:tmdbId", movieController.getMovieDetails);
 router.get("/subgenre/:subgenre", movieController.getMoviesBySubgenre);
 
 module.exports = router;
