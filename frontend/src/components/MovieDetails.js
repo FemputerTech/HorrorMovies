@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
 import "../styles/components/MovieDetails.css";
 
 const MovieDetails = ({ selectedMovie }) => {
   const [selectedOption, setSelectedOption] = useState("");
-  console.log(selectedMovie);
-
   return (
     <div className="movie-details">
       <div className="movie-details-left">
@@ -30,6 +30,9 @@ const MovieDetails = ({ selectedMovie }) => {
           </select>
           <label htmlFor="rating">Rate this movie</label>
           <input className="rating" id="rating" type="number" />
+          {Array.from({ length: 5 }, (_, index) => (
+            <FontAwesomeIcon key={index} icon={faStar} />
+          ))}
         </form>
       </div>
       <div className="movie-details-right">
