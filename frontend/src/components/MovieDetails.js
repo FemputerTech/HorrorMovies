@@ -11,6 +11,7 @@ const MovieDetails = ({ selectedMovie }) => {
   const [selectedOption, setSelectedOption] = useState("");
   const [rating, setRating] = useState(0);
   const [ratingHover, setRatingHover] = useState(0);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (userMovies) {
@@ -44,6 +45,11 @@ const MovieDetails = ({ selectedMovie }) => {
   async function handleSubmit(event) {
     event.preventDefault();
 
+    if (!user) {
+      setError("You must be logged in to rate this movie.");
+      return;
+    }
+
     const movieData = {
       tmdbId: selectedMovie.id,
       userId: user._id,
@@ -51,13 +57,16 @@ const MovieDetails = ({ selectedMovie }) => {
       rating,
       status: selectedOption,
     };
+
     try {
-      const response = await axios.post(
+      await axios.post(
         `${BACKEND_URL}/users/${user._id}/movies/add`,
         movieData
       );
-      console.log("Movie data submitted");
     } catch (error) {
+      if (error.response) {
+        setError(error.response.data.message || "An error occurred.");
+      }
       console.error("Error submitting movie data:", error);
     }
   }
@@ -110,6 +119,7 @@ const MovieDetails = ({ selectedMovie }) => {
           <label htmlFor="rating">Rate this movie</label>
           <button type="submit">Submit</button>
         </form>
+        {error && <p className="error-message">{error}</p>}
       </div>
       <div className="movie-details-right">
         <h1>{selectedMovie.title}</h1>
