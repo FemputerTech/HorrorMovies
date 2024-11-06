@@ -52,7 +52,11 @@ function App() {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    setUser(null);
+    setUserMovies(null);
     localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("user");
+    localStorage.removeItem("userMovies");
   };
 
   return (
