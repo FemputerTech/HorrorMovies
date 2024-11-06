@@ -1,5 +1,10 @@
 import React, { createContext, useState, useContext } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import GetStarted from "./pages/GetStarted";
 import Signup from "./pages/auth/Signup";
 import Login from "./pages/auth/Login";
@@ -30,10 +35,22 @@ function App() {
       <div className="App">
         <Router>
           <Routes>
-            <Route path="/" element={<GetStarted />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
+            {/* Public Routes: Only accessible if the user is not logged in */}
+            {!isLoggedIn && (
+              <>
+                <Route path="/" element={<GetStarted />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
+              </>
+            )}
             <Route path="/home" element={<Home />} />
+            {/* Redirect paths to home on logged-in status */}
+            <Route
+              path="*"
+              element={
+                isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/" />
+              }
+            />
           </Routes>
         </Router>
       </div>
