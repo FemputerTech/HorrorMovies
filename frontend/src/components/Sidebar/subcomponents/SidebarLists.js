@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const MovieLists = ({ decades, subgenres, onListSelect }) => {
+const SidebarLists = ({ decades, subgenres, onListSelect }) => {
   const [clickedSubgenre, setClickedSubgenre] = useState(null);
   const [activeSubgenre, setActiveSubgenre] = useState(null);
 
@@ -15,7 +15,7 @@ const MovieLists = ({ decades, subgenres, onListSelect }) => {
   };
 
   return (
-    <div className="movie-lists">
+    <div className="sidebar-lists">
       <ul className="filters">
         <li className="filter-item">
           <h3 className="filter-title">Subgenres</h3>
@@ -23,8 +23,8 @@ const MovieLists = ({ decades, subgenres, onListSelect }) => {
             {subgenres.map((subgenre, index) => (
               <li
                 className={`list-item 
-                ${activeSubgenre === subgenre.key ? "active" : ""} 
-                ${clickedSubgenre === subgenre.key ? "clicked" : ""}`}
+                  ${activeSubgenre === subgenre.key ? "active" : ""} 
+                  ${clickedSubgenre === subgenre.key ? "clicked" : ""}`}
                 key={subgenre.key}
                 onMouseDown={() => handleMouseDown(subgenre.key)}
                 onClick={() => handleListClick(subgenre.key, subgenre.label)}
@@ -39,4 +39,4 @@ const MovieLists = ({ decades, subgenres, onListSelect }) => {
   );
 };
 
-export default MovieLists;
+export default SidebarLists;

@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../Logo";
-import MovieLists from "./subcomponents/MovieLists";
+import SidebarLists from "./subcomponents/SidebarLists";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/components/Sidebar.css";
@@ -42,7 +42,7 @@ const Sidebar = ({ onListSelect }) => {
   return (
     <div className="sidebar">
       <Logo />
-      <MovieLists
+      <SidebarLists
         subgenres={subgenres}
         decades={decades}
         onListSelect={onListSelect}
