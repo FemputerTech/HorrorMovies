@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../App";
 import "../../styles/Auth.css";
 
 const Login = () => {
-  const { handleLogin } = useUserContext();
+  const { setUser, setUserMovies, handleLogin } = useUserContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,12 +25,11 @@ const Login = () => {
       });
       // On successful login
       if (response.status === 200) {
-        let { firstName } = response.data.user;
-
-        firstName =
-          firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+        const userData = response.data.user;
+        setUser(userData);
+        fetchUserMovies(userData._id);
         handleLogin();
-        navigate("/home", { state: { id: firstName } });
+        navigate("/home");
       }
     } catch (error) {
       // Handle error response
@@ -45,6 +44,20 @@ const Login = () => {
       }
     }
   }
+
+  async function fetchUserMovies(userId) {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/users/${userId}/movies`);
+      // On success
+      if (response.status === 200) {
+        const movieData = response.data.movies;
+        setUserMovies(movieData);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className="auth-page" id="login-page">
       <Header />
