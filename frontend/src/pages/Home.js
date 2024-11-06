@@ -1,29 +1,42 @@
 import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import Sidebar from "../components/Sidebar/Sidebar";
-import Main from "../components/Main/Main";
+import MovieDetails from "../components/MovieDetails";
+import MovieList from "../components/Movies/MovieList";
 import Footer from "../components/Footer/Footer";
-// import { useLocation } from "react-router-dom";
 import "../styles/Home.css";
 
 const Home = () => {
-  // const location = useLocation();
-
+  const [selectedMovie, setSelectedMovie] = useState(null);
   const [selectedList, setSelectedList] = useState({
     key: null,
     name: null,
     endpoint: null,
   });
 
-  const handleListClick = (listKey, listName, endpoint) => {
+  const handleListSelect = (listKey, listName, endpoint) => {
+    setSelectedMovie(null);
     setSelectedList({ key: listKey, name: listName, endpoint });
   };
+
+  const handleMovieSelect = (movie) => {
+    setSelectedMovie(movie);
+  };
+
   return (
     <div className="home-page">
-      {/* <h1>CREEPY CINEMA {location.state.id}</h1> */}
       <Header />
-      <Sidebar onListClick={handleListClick} />
-      <Main selectedList={selectedList} />
+      <Sidebar onListSelect={handleListSelect} />
+      <div className="main-content">
+        {selectedMovie ? (
+          <MovieDetails selectedMovie={selectedMovie} />
+        ) : (
+          <MovieList
+            onMovieSelect={handleMovieSelect}
+            selectedList={selectedList}
+          />
+        )}
+      </div>
       <Footer />
     </div>
   );

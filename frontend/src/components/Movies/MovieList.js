@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "./subcomponents/MovieCard";
-import "../../styles/components/Main.css";
+import "../../styles/components/MovieList.css";
 
-const Main = ({ selectedList }) => {
+const MovieList = ({ onMovieSelect, selectedList }) => {
   const [movies, setMovies] = useState([]);
   const [hoveredMovieId, setHoveredMovieId] = useState(null);
-
   useEffect(() => {
     const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
     // Function to fetch movies from the seleted endpoint
@@ -28,9 +27,8 @@ const Main = ({ selectedList }) => {
 
     fetchMovies();
   }, [selectedList]);
-
   return (
-    <div className="main">
+    <div className="movie-list">
       <h2 className="movie-list-heading">{selectedList.name}</h2>
       <div className="movies">
         {movies.map((movie) => (
@@ -49,7 +47,9 @@ const Main = ({ selectedList }) => {
               }
               alt={movie.title}
             />
-            {hoveredMovieId === movie.id && <MovieCard movie={movie} />}
+            {hoveredMovieId === movie.id && (
+              <MovieCard onMovieSelect={onMovieSelect} movie={movie} />
+            )}
           </div>
         ))}
       </div>
@@ -57,4 +57,4 @@ const Main = ({ selectedList }) => {
   );
 };
 
-export default Main;
+export default MovieList;

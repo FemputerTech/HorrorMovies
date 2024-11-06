@@ -3,7 +3,7 @@ import Logo from "../Logo";
 import MovieLists from "./subcomponents/MovieLists";
 import "../../styles/components/Sidebar.css";
 
-const Sidebar = ({ onListClick }) => {
+const Sidebar = ({ onListSelect }) => {
   const subgenres = [
     { key: "analog-horror", label: "Analog Horror" },
     { key: "body-horror", label: "Body Horror" },
@@ -43,7 +43,7 @@ const Sidebar = ({ onListClick }) => {
       <MovieLists
         subgenres={subgenres}
         decades={decades}
-        onListClick={onListClick}
+        onListSelect={onListSelect}
       />
       <div className="settings">Settings</div>
     </div>

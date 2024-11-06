@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const MovieLists = ({ decades, subgenres, onListClick }) => {
+const MovieLists = ({ decades, subgenres, onListSelect }) => {
   const [clickedSubgenre, setClickedSubgenre] = useState(null);
   const [activeSubgenre, setActiveSubgenre] = useState(null);
 
@@ -11,7 +11,7 @@ const MovieLists = ({ decades, subgenres, onListClick }) => {
   const handleListClick = (key, label) => {
     setActiveSubgenre(key);
     setClickedSubgenre(null);
-    onListClick(key, label, "subgenre");
+    onListSelect(key, label, "subgenre");
   };
 
   return (

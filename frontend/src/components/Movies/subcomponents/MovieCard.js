@@ -1,9 +1,13 @@
 import React from "react";
 import backDrop from "../../../assets/creepyCinemaBackDrop.png";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ onMovieSelect, movie }) => {
+  const handleMovieClick = (movie) => {
+    onMovieSelect(movie);
+  };
+
   return (
-    <div className="movie-card">
+    <div className="movie-card" onClick={() => handleMovieClick(movie)}>
       <div className="movie-image">
         <img
           className="movie-backdrop"
