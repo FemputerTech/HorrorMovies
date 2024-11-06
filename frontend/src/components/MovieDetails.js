@@ -5,6 +5,7 @@ import {
   // faPencil,
   faStar as faStarSolid,
 } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 import "../styles/components/MovieDetails.css";
 
 const MovieDetails = ({ selectedMovie }) => {
@@ -12,12 +13,11 @@ const MovieDetails = ({ selectedMovie }) => {
   const [rating, setRating] = useState(0);
   const [ratingHover, setRatingHover] = useState(0);
 
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
   const handleStarClick = (index) => {
     if (rating === index + 1) {
       setRating(0);
-      setTimeout(() => {
-        setRatingHover(0);
-      }, 3000);
     } else {
       setRating(index + 1);
     }
@@ -31,6 +31,24 @@ const MovieDetails = ({ selectedMovie }) => {
     setRatingHover(0);
   };
 
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    const movieData = {
+      tmdbId: selectedMovie.id,
+      title: selectedMovie.title,
+      rating,
+      status: selectedOption,
+    };
+    console.log(movieData);
+    try {
+      const response = await axios.post(`${BACKEND_URL}/user/movie`, movieData);
+      console.log("Movie data submitted:", response.data);
+    } catch (error) {
+      console.error("Error submitting movie data:", error);
+    }
+  }
+
   return (
     <div className="movie-details">
       <div className="movie-details-left">
@@ -43,7 +61,7 @@ const MovieDetails = ({ selectedMovie }) => {
           }
           alt={selectedMovie.title}
         />
-        <form className="add-movie-form">
+        <form className="add-movie-form" action="POST" onSubmit={handleSubmit}>
           <select
             id="dropdown"
             value={selectedOption}
@@ -54,7 +72,7 @@ const MovieDetails = ({ selectedMovie }) => {
             <option value="watching">Watching</option>
             <option value="watched">Watched</option>
           </select>
-          <div className="stars">
+          <div className="stars" id="rating">
             {Array.from({ length: 5 }, (_, index) => (
               <FontAwesomeIcon
                 className="star"
@@ -77,13 +95,7 @@ const MovieDetails = ({ selectedMovie }) => {
             ))}
           </div>
           <label htmlFor="rating">Rate this movie</label>
-          <input
-            className="rating"
-            id="rating"
-            type="number"
-            value={rating}
-            hidden
-          />
+          <button type="submit">Submit</button>
         </form>
       </div>
       <div className="movie-details-right">

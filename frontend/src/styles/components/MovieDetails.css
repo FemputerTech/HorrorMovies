@@ -48,6 +48,11 @@
   outline-color: white;
 }
 
+#dropdown:hover {
+  cursor: pointer;
+  font-weight: 600;
+}
+
 .stars {
   display: flex;
   cursor: pointer;
