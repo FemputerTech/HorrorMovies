@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
-import {
-  // faPencil,
-  faStar as faStarSolid,
-} from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
+import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
+import { useUserContext } from "../App";
 import "../styles/components/MovieDetails.css";
 
 const MovieDetails = ({ selectedMovie }) => {
+  const { user, userMovies } = useUserContext();
   const [selectedOption, setSelectedOption] = useState("");
   const [rating, setRating] = useState(0);
   const [ratingHover, setRatingHover] = useState(0);
+
+  useEffect(() => {
+    if (userMovies) {
+      for (let i = 0; i < userMovies.length; i++) {
+        if (userMovies[i].tmdbId === selectedMovie.id) {
+          setSelectedOption(userMovies[i].status);
+          setRating(userMovies[i].rating);
+        }
+      }
+    }
+  }, [userMovies, selectedMovie.id]);
 
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -36,13 +46,17 @@ const MovieDetails = ({ selectedMovie }) => {
 
     const movieData = {
       tmdbId: selectedMovie.id,
+      userId: user._id,
       title: selectedMovie.title,
       rating,
       status: selectedOption,
     };
     try {
-      const response = await axios.post(`${BACKEND_URL}/user/movie`, movieData);
-      console.log("Movie data submitted:", response.data);
+      const response = await axios.post(
+        `${BACKEND_URL}/users/${user._id}/movies/add`,
+        movieData
+      );
+      console.log("Movie data submitted");
     } catch (error) {
       console.error("Error submitting movie data:", error);
     }
