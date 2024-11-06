@@ -1,8 +1,8 @@
 import React from "react";
-import Logo from "../Logo";
+import Logo from "./Logo";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useUserContext } from "../../App";
-import "../../styles/components/Header.css";
+import { useUserContext } from "../App";
+import "../styles/components/Header.css";
 
 const Header = ({ firstName }) => {
   const { isLoggedIn, handleLogout } = useUserContext();
