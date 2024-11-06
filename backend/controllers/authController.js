@@ -5,7 +5,7 @@
  * manage the flow of data. It acts as a mediator between the view
  * (or client) and the model.
  */
-const User = require("../models/userModel");
+const { User } = require("../models/userModel");
 const bcrypt = require("bcrypt");
 
 class AuthController {

@@ -5,9 +5,39 @@
  * manage the flow of data. It acts as a mediator between the view
  * (or client) and the model.
  */
+const { UserMovie } = require("../models/userModel");
+
 class UserMovieController {
   async addMovie(req, res) {
-    console.log("adding movie...");
+    const movieData = req.body;
+
+    if (movieData.status === "") {
+      movieData.status = undefined;
+    }
+
+    try {
+      // Check if movie already exists
+      const existingMovie = await UserMovie.findOne({
+        tmdbId: movieData.tmdbId,
+      });
+      if (existingMovie) {
+        console.log("need to update movie");
+        return;
+      }
+
+      const newMovie = new UserMovie(movieData);
+      const savedMovie = await newMovie.save();
+
+      // Send success response
+      return res
+        .status(201)
+        .json({ savedMovie, message: "Movie save successful" });
+    } catch (error) {
+      console.error("Error during movie save:", error);
+      return res
+        .status(500)
+        .json({ message: "Server error during movie save" });
+    }
   }
   async getMovie(req, res) {
     console.log("getting movie...");
