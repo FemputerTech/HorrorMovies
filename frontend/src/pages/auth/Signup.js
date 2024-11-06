@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../App";
 import "../../styles/Auth.css";
 
 const Signup = () => {
-  const { handleLogin } = useUserContext();
+  const { setUser, handleLogin } = useUserContext();
   const navigate = useNavigate();
   const location = useLocation();
   const email = location.state?.email || "";
@@ -30,10 +30,10 @@ const Signup = () => {
       });
       // On successful signup
       if (response.status === 201) {
-        firstName =
-          firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+        const userData = response.data.user;
+        setUser(userData);
         handleLogin();
-        navigate("/home", { state: { id: firstName } });
+        navigate("/home");
       }
     } catch (error) {
       // Handle error response
