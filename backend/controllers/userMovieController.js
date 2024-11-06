@@ -8,6 +8,29 @@
 const { UserMovie } = require("../models/userModel");
 
 class UserMovieController {
+  async getMovies(req, res) {
+    const { userId } = req.params;
+    try {
+      // Query all movies where userId matches the provided userId
+      const movies = await UserMovie.find({ userId });
+
+      // If no movies are found, send an empty array or a message
+      if (!movies.length) {
+        return res
+          .status(404)
+          .json({ message: "No movies found for this user" });
+      }
+
+      // Send the movies back in the response
+      return res.status(200).json({ movies });
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+      return res
+        .status(500)
+        .json({ message: "Server error while fetching movies" });
+    }
+  }
+
   async addMovie(req, res) {
     const movieData = req.body;
 
@@ -39,12 +62,11 @@ class UserMovieController {
         .json({ message: "Server error during movie save" });
     }
   }
-  async getMovie(req, res) {
-    console.log("getting movie...");
-  }
+
   async updateMovie(req, res) {
     console.log("updating movie...");
   }
+
   async deleteMovie(req, res) {
     console.log("deleting movie...");
   }
