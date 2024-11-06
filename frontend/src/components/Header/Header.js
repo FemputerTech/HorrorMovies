@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useUserContext } from "../../App";
 import "../../styles/components/Header.css";
 
-const Header = () => {
+const Header = ({ firstName }) => {
   const { isLoggedIn, handleLogout } = useUserContext();
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,8 +24,7 @@ const Header = () => {
     <div className="header">
       <div>
         {isLoggedIn ? (
-          // <span>Welcome back {name}!</span>
-          <span>Welcome back!</span>
+          <span>Welcome back {firstName}!</span>
         ) : location.pathname !== "/home" ? (
           <Logo />
         ) : null}

@@ -11,7 +11,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const email = location.state?.email || "";
-  const [firstName, setFirstName] = useState("");
+  let [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -30,6 +30,8 @@ const Signup = () => {
       });
       // On successful signup
       if (response.status === 201) {
+        firstName =
+          firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
         handleLogin();
         navigate("/home", { state: { id: firstName } });
       }

@@ -25,8 +25,12 @@ const Login = () => {
       });
       // On successful login
       if (response.status === 200) {
+        let { firstName } = response.data.user;
+
+        firstName =
+          firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
         handleLogin();
-        navigate("/home", { state: { id: email } });
+        navigate("/home", { state: { id: firstName } });
       }
     } catch (error) {
       // Handle error response

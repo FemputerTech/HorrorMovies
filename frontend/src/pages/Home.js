@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import MovieDetails from "../components/MovieDetails";
 import MovieList from "../components/Movies/MovieList";
 import Footer from "../components/Footer/Footer";
+import { useLocation } from "react-router-dom";
 import "../styles/Home.css";
 
 const Home = () => {
@@ -13,6 +14,8 @@ const Home = () => {
     name: null,
     endpoint: null,
   });
+  const location = useLocation();
+  const firstName = location.state?.id;
 
   const handleListSelect = (listKey, listName, endpoint) => {
     setSelectedMovie(null);
@@ -25,7 +28,7 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <Header />
+      <Header firstName={firstName} />
       <Sidebar onListSelect={handleListSelect} />
       <div className="main-content">
         {selectedMovie ? (
