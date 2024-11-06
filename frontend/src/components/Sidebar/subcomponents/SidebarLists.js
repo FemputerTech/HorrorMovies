@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import classNames from "classnames";
 
 const SidebarLists = ({ decades, subgenres, onListSelect }) => {
   const [clickedSubgenre, setClickedSubgenre] = useState(null);
@@ -22,10 +23,10 @@ const SidebarLists = ({ decades, subgenres, onListSelect }) => {
           <ul className="list">
             {subgenres.map((subgenre, index) => (
               <li
-                className={`list-item 
-                  ${activeSubgenre === subgenre.key ? "active" : ""} 
-                  ${clickedSubgenre === subgenre.key ? "clicked" : ""}`}
-                key={subgenre.key}
+                className={classNames("list-item", {
+                  active: activeSubgenre === subgenre.key,
+                  clicked: clickedSubgenre === subgenre.key,
+                })}
                 onMouseDown={() => handleMouseDown(subgenre.key)}
                 onClick={() => handleListClick(subgenre.key, subgenre.label)}
               >
