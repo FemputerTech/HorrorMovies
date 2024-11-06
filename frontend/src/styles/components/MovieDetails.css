@@ -27,5 +27,5 @@
 .movie-image {
   border: 2px solid rgba(213, 213, 213);
   border-radius: 0 10px 10px 0;
-  box-shadow: 4px 4px 1px rgba(213, 213, 213, 1);
+  box-shadow: 6px 0px 1px rgba(213, 213, 213, 1);
 }
