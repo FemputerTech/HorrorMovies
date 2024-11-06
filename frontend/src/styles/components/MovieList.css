@@ -34,13 +34,13 @@
   height: 280px;
 }
 
-.movie-image {
+.movie-card-image {
   position: relative;
   width: 400px;
   height: 230px;
 }
 
-.movie-image::after {
+.movie-card-image::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -83,7 +83,7 @@
   z-index: 10;
 }
 
-.movie-image {
+.movie-card-image {
   width: 400px;
   height: 230px;
 }

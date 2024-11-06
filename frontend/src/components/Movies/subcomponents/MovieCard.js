@@ -8,7 +8,7 @@ const MovieCard = ({ onMovieSelect, movie }) => {
 
   return (
     <div className="movie-card" onClick={() => handleMovieClick(movie)}>
-      <div className="movie-image">
+      <div className="movie-card-image">
         <img
           className="movie-backdrop"
           src={
