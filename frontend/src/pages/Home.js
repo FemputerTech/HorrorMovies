@@ -1,21 +1,25 @@
 import React, { useState } from "react";
-import Header from "../components/Header/Header";
+import Header from "../components/Header";
 import Sidebar from "../components/Sidebar/Sidebar";
 import MovieDetails from "../components/MovieDetails";
-import MovieList from "../components/Movies/MovieList";
-import Footer from "../components/Footer/Footer";
-import { useLocation } from "react-router-dom";
+import Movies from "../components/Movies/Movies";
+import Footer from "../components/Footer";
+import { useUserContext } from "../App";
 import "../styles/Home.css";
 
 const Home = () => {
+  const { user } = useUserContext();
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [selectedList, setSelectedList] = useState({
     key: null,
     name: null,
     endpoint: null,
   });
-  const location = useLocation();
-  const firstName = location.state?.id;
+
+  let firstName = "";
+  if (user) {
+    firstName = user.firstName[0].toUpperCase() + user.firstName.slice(1);
+  }
 
   const handleListSelect = (listKey, listName, endpoint) => {
     setSelectedMovie(null);
@@ -34,7 +38,7 @@ const Home = () => {
         {selectedMovie ? (
           <MovieDetails selectedMovie={selectedMovie} />
         ) : (
-          <MovieList
+          <Movies
             onMovieSelect={handleMovieSelect}
             selectedList={selectedList}
           />
