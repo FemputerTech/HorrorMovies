@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "./subcomponents/MovieCard";
 import "../../styles/components/MovieList.css";
 
-const MovieList = ({ onMovieSelect, selectedList }) => {
+const Movies = ({ onMovieSelect, selectedList }) => {
   const [movies, setMovies] = useState([]);
   const [hoveredMovieId, setHoveredMovieId] = useState(null);
   useEffect(() => {
@@ -57,4 +57,4 @@ const MovieList = ({ onMovieSelect, selectedList }) => {
   );
 };
 
-export default MovieList;
+export default Movies;
