@@ -91,7 +91,7 @@ class MovieController {
         const movieDetails = await Promise.all(
           movieIds.map((id) => tmdbService.fetchMovieDetails(id))
         );
-        movies.push(...this.formatMovieDetails(movieDetails));
+        movies.push(...movieDetails);
       } catch (error) {
         console.error(
           `Failed to fetch movies by keyword on page ${page}:`,
@@ -101,36 +101,6 @@ class MovieController {
       }
     }
     return movies;
-  }
-
-  formatMovieDetails(movies) {
-    return movies.map(
-      ({
-        id,
-        title,
-        poster_path,
-        backdrop_path,
-        overview,
-        tagline,
-        original_language,
-        popularity,
-        release_date,
-        runtime,
-        vote_average,
-      }) => ({
-        id,
-        title,
-        poster_path,
-        backdrop_path,
-        overview,
-        tagline,
-        language: original_language,
-        popularity,
-        release_date,
-        runtime,
-        vote_average,
-      })
-    );
   }
 }
 
