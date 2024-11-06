@@ -40,7 +40,6 @@ const MovieDetails = ({ selectedMovie }) => {
       rating,
       status: selectedOption,
     };
-    console.log(movieData);
     try {
       const response = await axios.post(`${BACKEND_URL}/user/movie`, movieData);
       console.log("Movie data submitted:", response.data);
