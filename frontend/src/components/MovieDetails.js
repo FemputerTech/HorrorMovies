@@ -1,10 +1,36 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-regular-svg-icons";
+import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
+import {
+  faPencil,
+  faStar as faStarSolid,
+} from "@fortawesome/free-solid-svg-icons";
 import "../styles/components/MovieDetails.css";
 
 const MovieDetails = ({ selectedMovie }) => {
   const [selectedOption, setSelectedOption] = useState("");
+  const [rating, setRating] = useState(0);
+  const [ratingHover, setRatingHover] = useState(0);
+
+  const handleStarClick = (index) => {
+    if (rating === index + 1) {
+      setRating(0);
+      setTimeout(() => {
+        setRatingHover(0);
+      }, 3000);
+    } else {
+      setRating(index + 1);
+    }
+  };
+
+  const handleStarHover = (index) => {
+    setRatingHover(index + 1);
+  };
+
+  const handleStarHoverOut = () => {
+    setRatingHover(0);
+  };
+
   return (
     <div className="movie-details">
       <div className="movie-details-left">
@@ -24,15 +50,40 @@ const MovieDetails = ({ selectedMovie }) => {
             onChange={(event) => setSelectedOption(event.target.value)}
             aria-label="update status"
           >
-            <option value="want to watch">Want to watch</option>
+            <option value="want to watch"> Want to watch</option>
             <option value="watching">Watching</option>
             <option value="watched">Watched</option>
           </select>
+          <div className="stars">
+            {Array.from({ length: 5 }, (_, index) => (
+              <FontAwesomeIcon
+                className="star"
+                key={index}
+                icon={
+                  index < (ratingHover || rating) ? faStarSolid : faStarRegular
+                }
+                size="xl"
+                color={
+                  index < ratingHover
+                    ? "var(--primary-muted)"
+                    : index < rating
+                    ? "var(--primary)"
+                    : "var(--text-faint)"
+                }
+                onClick={() => handleStarClick(index)}
+                onMouseOver={() => handleStarHover(index)}
+                onMouseOut={() => handleStarHoverOut()}
+              />
+            ))}
+          </div>
           <label htmlFor="rating">Rate this movie</label>
-          <input className="rating" id="rating" type="number" />
-          {Array.from({ length: 5 }, (_, index) => (
-            <FontAwesomeIcon key={index} icon={faStar} />
-          ))}
+          <input
+            className="rating"
+            id="rating"
+            type="number"
+            value={rating}
+            hidden
+          />
         </form>
       </div>
       <div className="movie-details-right">
