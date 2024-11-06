@@ -1,6 +1,8 @@
 import React from "react";
 import Logo from "../Logo";
 import MovieLists from "./subcomponents/MovieLists";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/components/Sidebar.css";
 
 const Sidebar = ({ onListSelect }) => {
@@ -45,7 +47,10 @@ const Sidebar = ({ onListSelect }) => {
         decades={decades}
         onListSelect={onListSelect}
       />
-      <div className="settings">Settings</div>
+      <div className="settings">
+        Settings
+        <FontAwesomeIcon icon={faUser} />
+      </div>
     </div>
   );
 };
