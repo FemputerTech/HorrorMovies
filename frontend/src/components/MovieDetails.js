@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 import {
-  faPencil,
+  // faPencil,
   faStar as faStarSolid,
 } from "@fortawesome/free-solid-svg-icons";
 import "../styles/components/MovieDetails.css";
