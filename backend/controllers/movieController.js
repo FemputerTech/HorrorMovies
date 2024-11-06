@@ -25,15 +25,15 @@ class MovieController {
   }
 
   async getMovieDetails(req, res) {
-    const { movieId } = req.params;
+    const { tmdbId } = req.params;
 
     // Input validation
-    if (!validation.validateMovieId(movieId)) {
-      return res.status(400).json({ error: "Invalid movie ID" });
+    if (!validation.validateMovieId(tmdbId)) {
+      return res.status(400).json({ error: "Invalid tmdb ID" });
     }
 
     try {
-      const details = await tmdbService.fetchMovieDetails(movieId);
+      const details = await tmdbService.fetchMovieDetails(tmdbId);
       res.json(details);
     } catch (error) {
       console.error("Error fetching movie details:", error);
