@@ -71,9 +71,11 @@ class MovieController {
 
   async searchMovies(req, res) {
     const { input } = req.params;
-
+    console.log(input);
     try {
-      const details = await tmdbService.fetchMovieSearch(input);
+      const details = await tmdbService.fetchMovieSearch(input, [
+        this.genres.horror,
+      ]);
       res.json(details);
     } catch (error) {
       console.error("Error fetching movie search:", error);

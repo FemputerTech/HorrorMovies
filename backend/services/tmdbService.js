@@ -62,11 +62,12 @@ class TMDBService {
     }
   }
 
-  async fetchMovieSearch(query) {
+  async fetchMovieSearch(query, genres) {
     try {
-      const response = await axios.get(`${this.baseURL}/search/keyword`, {
+      const response = await axios.get(`${this.baseURL}/search/movie`, {
         params: {
           query: query,
+          with_genres: genres,
         },
         headers: this.headers,
       });
