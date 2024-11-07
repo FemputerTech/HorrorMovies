@@ -71,12 +71,16 @@ class MovieController {
 
   async searchMovies(req, res) {
     const { input } = req.params;
-    console.log(input);
+    const genreIds = [this.genres.horror];
     try {
-      const details = await tmdbService.fetchMovieSearch(input, [
-        this.genres.horror,
-      ]);
-      res.json(details);
+      const results = await tmdbService.fetchMovieSearch(input);
+      // Filter out movies without poster path
+      const movies = results.filter(
+        (movie) =>
+          movie.poster_path &&
+          movie.genre_ids.some((id) => genreIds.includes(id))
+      );
+      res.json(movies);
     } catch (error) {
       console.error("Error fetching movie search:", error);
       return res
