@@ -2,7 +2,8 @@
 .header {
   grid-row: 1;
   grid-column: 2;
-  /* position: sticky; */
+  /* position: fixed; */
+  position: sticky;
   display: flex;
   justify-content: space-between;
   align-items: center;

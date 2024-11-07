@@ -9,9 +9,9 @@ const Movie = ({ firstName, setSelectedList, selectedMovie }) => {
     <div className="home-page">
       <Header firstName={firstName} />
       <Sidebar setSelectedList={setSelectedList} />
-      <div className="main-content">
+      <main className="main-content">
         <MovieDetails selectedMovie={selectedMovie} />
-      </div>
+      </main>
       <Footer />
     </div>
   );

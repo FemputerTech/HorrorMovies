@@ -9,9 +9,23 @@ const Home = ({ firstName, setSelectedList }) => {
     <div className="home-page">
       <Header firstName={firstName} />
       <Sidebar setSelectedList={setSelectedList} />
-      <div className="main-content">
+      <main className="main-content">
+        <div className="home-header">
+          <div className="welcome-text">
+            <h1>Welcome to Your Next Nightmare!</h1>
+            <p style={{ fontStyle: "italic" }}>
+              The ultimate destination for horror lovers.
+            </p>
+            <h3>Terror, Thrills, & Unforgettable Horrors</h3>
+            <p>
+              Explore creepy classics, terrifying new releases, and hidden gems.
+              Rate your favorites and save them for later!{" "}
+            </p>
+            <h3>Browse. Discover. Prepare to be Scared.</h3>
+          </div>
+        </div>
         <h1>Welcome</h1>
-      </div>
+      </main>
       <Footer />
     </div>
   );

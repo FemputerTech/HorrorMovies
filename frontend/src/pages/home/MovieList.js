@@ -14,12 +14,12 @@ const MovieList = ({
     <div className="home-page">
       <Header firstName={firstName} />
       <Sidebar setSelectedList={setSelectedList} />
-      <div className="main-content">
+      <main className="main-content">
         <Movies
           setSelectedMovie={setSelectedMovie}
           selectedList={selectedList}
         />
-      </div>
+      </main>
       <Footer />
     </div>
   );
