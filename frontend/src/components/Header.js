@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useUserContext } from "../App";
 import "../styles/components/Header.css";
 
-const Header = ({ firstName }) => {
+const Header = ({ firstName, subtractWidth }) => {
   const { isLoggedIn, handleLogout } = useUserContext();
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,7 +21,13 @@ const Header = ({ firstName }) => {
   };
 
   return (
-    <div className="header">
+    <div
+      className="header"
+      style={{
+        left: `${subtractWidth}px`,
+        width: `calc(100% - ${subtractWidth}px)`,
+      }}
+    >
       <div>
         {isLoggedIn ? (
           <span>Welcome back {firstName}!</span>

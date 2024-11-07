@@ -5,9 +5,10 @@ import MovieDetails from "../../components/MovieDetails";
 import Footer from "../../components/Footer";
 
 const Movie = ({ firstName, setSelectedList, selectedMovie }) => {
+  const subtractWidth = 250;
   return (
     <div className="home-page">
-      <Header firstName={firstName} />
+      <Header firstName={firstName} subtractWidth={subtractWidth} />
       <Sidebar setSelectedList={setSelectedList} />
       <main className="main-content">
         <MovieDetails selectedMovie={selectedMovie} />

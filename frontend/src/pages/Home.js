@@ -6,9 +6,10 @@ import Footer from "../components/Footer";
 import "../styles/Home.css";
 
 const Home = ({ firstName, setSelectedList }) => {
+  const subtractWidth = 250;
   return (
     <div className="home-page">
-      <Header firstName={firstName} />
+      <Header firstName={firstName} subtractWidth={subtractWidth} />
       <Sidebar setSelectedList={setSelectedList} />
       <main className="main-content">
         <div className="home-header">

@@ -10,9 +10,10 @@ const MovieList = ({
   setSelectedList,
   setSelectedMovie,
 }) => {
+  const subtractWidth = 250;
   return (
     <div className="home-page">
-      <Header firstName={firstName} />
+      <Header firstName={firstName} subtractWidth={subtractWidth} />
       <Sidebar setSelectedList={setSelectedList} />
       <main className="main-content">
         <Movies

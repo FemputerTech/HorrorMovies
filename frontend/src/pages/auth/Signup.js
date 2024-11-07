@@ -16,6 +16,8 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const subtractWidth = 0;
+
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   async function handleSubmit(event) {
@@ -51,7 +53,7 @@ const Signup = () => {
 
   return (
     <div className="auth-page" id="signup-page">
-      <Header />
+      <Header subtractWidth={subtractWidth} />{" "}
       <main className="auth-main">
         <div className="auth-container" id="signup-container">
           <div className="signup-title">

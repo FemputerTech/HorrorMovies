@@ -8,6 +8,8 @@ const GetStarted = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
+  const subtractWidth = 0;
+
   const handleSubmit = (event) => {
     event.preventDefault();
     navigate("/signup", { state: { email } });
@@ -15,7 +17,7 @@ const GetStarted = () => {
 
   return (
     <div className="auth-page" id="get-started-page">
-      <Header />
+      <Header subtractWidth={subtractWidth} />
       <main className="auth-main">
         <div className="auth-container" id="get-started-container">
           <div className="get-started-title">
