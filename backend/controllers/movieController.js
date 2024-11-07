@@ -22,6 +22,7 @@ class MovieController {
     this.getMovieDetails = this.getMovieDetails.bind(this);
     this.getMoviesBySubgenre = this.getMoviesBySubgenre.bind(this);
     this.getMoviesByKeyword = this.getMoviesByKeyword.bind(this);
+    this.searchMovies = this.searchMovies.bind(this);
   }
 
   async getMovieDetails(req, res) {
@@ -65,6 +66,20 @@ class MovieController {
       return res
         .status(500)
         .json({ message: "Server error during subgenre fetch" });
+    }
+  }
+
+  async searchMovies(req, res) {
+    const { input } = req.params;
+
+    try {
+      const details = await tmdbService.fetchMovieSearch(input);
+      res.json(details);
+    } catch (error) {
+      console.error("Error fetching movie search:", error);
+      return res
+        .status(500)
+        .json({ message: "Server error during movie search fetch" });
     }
   }
 

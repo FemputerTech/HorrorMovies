@@ -61,6 +61,20 @@ class TMDBService {
       throw new Error("Failed to discover movies from TMDB");
     }
   }
+
+  async fetchMovieSearch(query) {
+    try {
+      const response = await axios.get(`${this.baseURL}/search/keyword`, {
+        params: {
+          query: query,
+        },
+        headers: this.headers,
+      });
+      return response.data.results;
+    } catch (error) {
+      throw new Error("Failed to search movies from TMDB");
+    }
+  }
 }
 
 module.exports = new TMDBService();

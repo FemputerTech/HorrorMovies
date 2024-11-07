@@ -9,5 +9,6 @@ const movieController = require("../controllers/movieController");
 
 router.get("/:tmdbId", movieController.getMovieDetails);
 router.get("/subgenre/:subgenre", movieController.getMoviesBySubgenre);
+router.get("/search/:input", movieController.searchMovies);
 
 module.exports = router;
