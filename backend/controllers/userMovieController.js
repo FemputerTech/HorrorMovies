@@ -32,7 +32,8 @@ class UserMovieController {
   }
 
   async addMovie(req, res) {
-    const movieData = req.body;
+    const { userId } = req.params;
+    const movieData = { ...req.body, userId };
 
     if (movieData.status === "") {
       movieData.status = undefined;
@@ -41,6 +42,7 @@ class UserMovieController {
     try {
       // Check if movie already exists
       const existingMovie = await UserMovie.findOne({
+        userId: movieData.userId,
         tmdbId: movieData.tmdbId,
       });
       if (existingMovie) {
