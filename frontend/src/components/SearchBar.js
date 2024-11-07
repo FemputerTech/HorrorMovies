@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "../styles/components/SearchBar.css";
 
 const SearchBar = ({ setMovies }) => {
@@ -31,6 +33,9 @@ const SearchBar = ({ setMovies }) => {
           aria-label="search"
           onChange={(event) => setSearchText(event.target.value)}
         />
+        <button className="search-button" type="submit">
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
       </form>
     </div>
   );
