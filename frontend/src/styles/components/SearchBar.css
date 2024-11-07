@@ -1,0 +1,19 @@
+/* Search Bar css */
+.search-bar-form {
+  margin-left: 100px;
+  width: 400px;
+}
+
+.search-text {
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--text);
+  border-radius: 4px;
+  color: var(--text);
+  font-size: 1em;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.search-text:focus {
+  outline-color: white;
+}

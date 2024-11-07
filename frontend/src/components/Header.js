@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "./Logo";
+import SearchBar from "./SearchBar";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUserContext } from "../App";
 import "../styles/components/Header.css";
@@ -35,6 +36,7 @@ const Header = ({ firstName, subtractWidth }) => {
           <Logo />
         ) : null}
       </div>
+      <SearchBar />
       <button className="button" id="auth-button" onClick={handleLoginLogout}>
         {isLoggedIn ? "Logout" : "Login"}
       </button>
