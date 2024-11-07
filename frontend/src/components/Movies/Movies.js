@@ -1,38 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MovieCard from "./subcomponents/MovieCard";
 import "../../styles/components/MovieList.css";
 
-const Movies = ({ setSelectedMovie, selectedList }) => {
-  const [movies, setMovies] = useState([]);
+const Movies = ({ setSelectedMovie, movies }) => {
   const [hoveredMovieId, setHoveredMovieId] = useState(null);
 
-  useEffect(() => {
-    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-    // Function to fetch movies from the seleted endpoint
-    const fetchMovies = async () => {
-      if (selectedList.key) {
-        try {
-          const response = await fetch(
-            `${BACKEND_URL}/movies/${selectedList.endpoint}/${selectedList.key}`
-          );
-          if (!response.ok) {
-            throw new Error("Failed to fetch movies");
-          }
-          const data = await response.json();
-          setMovies(data);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    };
-
-    fetchMovies();
-  }, [selectedList]);
   return (
     <div className="movie-list">
-      <h2 className="movie-list-heading">{selectedList.name}</h2>
+      <h2 className="movie-list-heading">{movies.title}</h2>
       <div className="movies">
-        {movies.map((movie) => (
+        {movies.list.map((movie) => (
           <div
             key={movie.id}
             className="movie-container"

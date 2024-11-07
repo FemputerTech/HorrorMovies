@@ -34,13 +34,8 @@ function App() {
     const storedUserMovies = localStorage.getItem("userMovies");
     return storedUserMovies ? JSON.parse(storedUserMovies) : null;
   });
-
+  const [movies, setMovies] = useState({ title: "", list: [] });
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [selectedList, setSelectedList] = useState({
-    key: null,
-    name: null,
-    endpoint: null,
-  });
 
   // Store user data and login status in localStorage when they change
   useEffect(() => {
@@ -118,7 +113,11 @@ function App() {
             <Route
               path="/home"
               element={
-                <Home firstName={firstName} setSelectedList={setSelectedList} />
+                <Home
+                  firstName={firstName}
+                  movies={movies}
+                  setMovies={setMovies}
+                />
               }
             />
             <Route
@@ -126,9 +125,9 @@ function App() {
               element={
                 <MovieList
                   firstName={firstName}
-                  selectedList={selectedList}
-                  setSelectedList={setSelectedList}
                   setSelectedMovie={setSelectedMovie}
+                  movies={movies}
+                  setMovies={setMovies}
                 />
               }
             />
@@ -137,8 +136,8 @@ function App() {
               element={
                 <Movie
                   firstName={firstName}
-                  setSelectedList={setSelectedList}
                   selectedMovie={selectedMovie}
+                  setMovies={setMovies}
                 />
               }
             />

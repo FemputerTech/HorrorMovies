@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+// import { useNavigate } from "react-router-dom";
 import "../styles/components/SearchBar.css";
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
+  // const [movies, setMovies] = useState([]);
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   async function handleSubmit(event) {
@@ -17,7 +19,6 @@ const SearchBar = () => {
       console.error("not movies found:", error);
     }
   }
-
   return (
     <div className="search-bar">
       <form className="search-bar-form" action="GET" onSubmit={handleSubmit}>

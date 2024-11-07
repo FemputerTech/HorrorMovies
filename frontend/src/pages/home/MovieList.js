@@ -4,22 +4,14 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Movies from "../../components/Movies/Movies";
 import Footer from "../../components/Footer";
 
-const MovieList = ({
-  firstName,
-  selectedList,
-  setSelectedList,
-  setSelectedMovie,
-}) => {
+const MovieList = ({ firstName, setSelectedMovie, movies, setMovies }) => {
   const subtractWidth = 250;
   return (
     <div className="home-page">
       <Header firstName={firstName} subtractWidth={subtractWidth} />
-      <Sidebar setSelectedList={setSelectedList} />
+      <Sidebar setMovies={setMovies} />
       <main className="main-content">
-        <Movies
-          setSelectedMovie={setSelectedMovie}
-          selectedList={selectedList}
-        />
+        <Movies setSelectedMovie={setSelectedMovie} movies={movies} />
       </main>
       <Footer />
     </div>

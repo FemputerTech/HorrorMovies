@@ -5,12 +5,12 @@ import MoviesHome from "../components/Movies/MoviesHome";
 import Footer from "../components/Footer";
 import "../styles/Home.css";
 
-const Home = ({ firstName, setSelectedList }) => {
+const Home = ({ firstName, movies, setMovies }) => {
   const subtractWidth = 250;
   return (
     <div className="home-page">
       <Header firstName={firstName} subtractWidth={subtractWidth} />
-      <Sidebar setSelectedList={setSelectedList} />
+      <Sidebar setMovies={setMovies} />
       <main className="main-content">
         <div className="home-header">
           <div className="welcome-text">

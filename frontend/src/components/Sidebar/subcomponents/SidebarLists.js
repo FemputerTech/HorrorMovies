@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 
-const SidebarLists = ({ decades, subgenres, setSelectedList }) => {
+const SidebarLists = ({ decades, subgenres, setMovies }) => {
   const navigate = useNavigate();
   const [clickedSubgenre, setClickedSubgenre] = useState(null);
   const [activeSubgenre, setActiveSubgenre] = useState(null);
+
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   const handleMouseDown = (key) => {
     setClickedSubgenre(key);
@@ -14,8 +16,22 @@ const SidebarLists = ({ decades, subgenres, setSelectedList }) => {
   const handleListClick = (key, label) => {
     setActiveSubgenre(key);
     setClickedSubgenre(null);
-    setSelectedList({ key, name: label, endpoint: "subgenre" });
-    navigate(`/home/list/${key}`);
+    fetchMovies(key, label);
+  };
+
+  // Function to fetch movies from the seleted endpoint
+  const fetchMovies = async (key, label) => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/movies/subgenre/${key}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch movies");
+      }
+      const data = await response.json();
+      setMovies({ title: label, list: data });
+      navigate(`/home/list/${key}`);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
