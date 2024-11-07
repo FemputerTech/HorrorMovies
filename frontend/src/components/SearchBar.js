@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/components/SearchBar.css";
 
 const SearchBar = ({ setMovies }) => {
+  const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -14,6 +15,7 @@ const SearchBar = ({ setMovies }) => {
         `${BACKEND_URL}/movies/search/${searchText}`
       );
       setMovies({ title: searchText, list: response.data });
+      navigate(`/home/list/${searchText}`);
     } catch (error) {
       console.error("not movies found:", error);
     }
