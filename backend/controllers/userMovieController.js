@@ -15,11 +15,11 @@ class UserMovieController {
       const movies = await UserMovie.find({ userId });
 
       // If no movies are found, send an empty array or a message
-      if (!movies.length) {
-        return res
-          .status(404)
-          .json({ message: "No movies found for this user" });
-      }
+      // if (!movies.length) {
+      //   return res
+      //     .status(404)
+      //     .json({ message: "No movies found for this user" });
+      // }
 
       // Send the movies back in the response
       return res.status(200).json({ movies });
