@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "./subcomponents/MovieCard";
 import "../../styles/components/MovieList.css";
 
-const Movies = ({ onMovieSelect, selectedList }) => {
+const Movies = ({ setSelectedMovie, selectedList }) => {
   const [movies, setMovies] = useState([]);
   const [hoveredMovieId, setHoveredMovieId] = useState(null);
+
   useEffect(() => {
     const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
     // Function to fetch movies from the seleted endpoint
@@ -48,7 +49,7 @@ const Movies = ({ onMovieSelect, selectedList }) => {
               alt={movie.title}
             />
             {hoveredMovieId === movie.id && (
-              <MovieCard onMovieSelect={onMovieSelect} movie={movie} />
+              <MovieCard setSelectedMovie={setSelectedMovie} movie={movie} />
             )}
           </div>
         ))}

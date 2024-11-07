@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 
-const SidebarLists = ({ decades, subgenres, onListSelect }) => {
+const SidebarLists = ({ decades, subgenres, setSelectedList }) => {
+  const navigate = useNavigate();
   const [clickedSubgenre, setClickedSubgenre] = useState(null);
   const [activeSubgenre, setActiveSubgenre] = useState(null);
 
@@ -12,7 +14,8 @@ const SidebarLists = ({ decades, subgenres, onListSelect }) => {
   const handleListClick = (key, label) => {
     setActiveSubgenre(key);
     setClickedSubgenre(null);
-    onListSelect(key, label, "subgenre");
+    setSelectedList({ key, name: label, endpoint: "subgenre" });
+    navigate(`/home/list/${key}`);
   };
 
   return (

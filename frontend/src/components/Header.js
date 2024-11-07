@@ -25,7 +25,7 @@ const Header = ({ firstName }) => {
       <div>
         {isLoggedIn ? (
           <span>Welcome back {firstName}!</span>
-        ) : location.pathname !== "/home" ? (
+        ) : !location.pathname.startsWith("/home") ? (
           <Logo />
         ) : null}
       </div>

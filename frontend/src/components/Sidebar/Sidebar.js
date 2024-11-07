@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/components/Sidebar.css";
 
-const Sidebar = ({ onListSelect }) => {
+const Sidebar = ({ setSelectedList }) => {
   const subgenres = [
     { key: "analog-horror", label: "Analog Horror" },
     { key: "body-horror", label: "Body Horror" },
@@ -45,7 +45,7 @@ const Sidebar = ({ onListSelect }) => {
       <SidebarLists
         subgenres={subgenres}
         decades={decades}
-        onListSelect={onListSelect}
+        setSelectedList={setSelectedList}
       />
       <div className="settings">
         Settings

@@ -1,9 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import backDrop from "../../../assets/creepyCinemaBackDrop.png";
 
-const MovieCard = ({ onMovieSelect, movie }) => {
+const MovieCard = ({ setSelectedMovie, movie }) => {
+  const navigate = useNavigate();
   const handleMovieClick = (movie) => {
-    onMovieSelect(movie);
+    setSelectedMovie(movie);
+    navigate(`/home/movie/${movie.id}`);
   };
 
   return (
