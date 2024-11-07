@@ -1,6 +1,11 @@
 /* Search Bar css */
+.search-bar {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
 .search-bar-form {
-  margin-left: 100px;
   width: 400px;
 }
 

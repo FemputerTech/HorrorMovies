@@ -29,7 +29,7 @@ const Header = ({ firstName, subtractWidth, setMovies }) => {
         width: `calc(100% - ${subtractWidth}px)`,
       }}
     >
-      <div>
+      <div className="logo-container">
         {isLoggedIn ? (
           <span>Welcome back {firstName}!</span>
         ) : !location.pathname.startsWith("/home") ? (
@@ -37,9 +37,11 @@ const Header = ({ firstName, subtractWidth, setMovies }) => {
         ) : null}
       </div>
       <SearchBar setMovies={setMovies} />
-      <button className="button" id="auth-button" onClick={handleLoginLogout}>
-        {isLoggedIn ? "Logout" : "Login"}
-      </button>
+      <div className="button-container">
+        <button className="button" id="auth-button" onClick={handleLoginLogout}>
+          {isLoggedIn ? "Logout" : "Login"}
+        </button>
+      </div>
     </div>
   );
 };
