@@ -7,7 +7,7 @@ import { useUserContext } from "../../App";
 import "../../styles/Auth.css";
 
 const Login = () => {
-  const { setUser, setUserMovies, handleLogin } = useUserContext();
+  const { setUser, handleLogin } = useUserContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +29,6 @@ const Login = () => {
       if (response.status === 200) {
         const userData = response.data.user;
         setUser(userData);
-        fetchUserMovies(userData._id);
         handleLogin();
         navigate("/home");
       }
@@ -44,19 +43,6 @@ const Login = () => {
         // Network error or something went wrong
         setError("An error occurred. Please try again.");
       }
-    }
-  }
-
-  async function fetchUserMovies(userId) {
-    try {
-      const response = await axios.get(`${BACKEND_URL}/users/${userId}/movies`);
-      // On success
-      if (response.status === 200) {
-        const movieData = response.data.movies;
-        setUserMovies(movieData);
-      }
-    } catch (error) {
-      console.error("Error with fetching movies", error);
     }
   }
 

@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
+import axios from "axios";
 import {
   BrowserRouter as Router,
   Route,
@@ -43,10 +44,27 @@ function App() {
 
   // Store user data and login status in localStorage when they change
   useEffect(() => {
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+    async function fetchUserMovies(userId) {
+      try {
+        const response = await axios.get(
+          `${BACKEND_URL}/users/${userId}/movies`
+        );
+        // On success
+        if (response.status === 200) {
+          const movieData = response.data.movies;
+          setUserMovies(movieData);
+          localStorage.setItem("userMovies", JSON.stringify(userMovies));
+        }
+      } catch (error) {
+        console.error("Error with fetching movies", error);
+      }
+    }
+
     if (isLoggedIn && user) {
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("userMovies", JSON.stringify(userMovies));
+      fetchUserMovies(user._id);
     } else {
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("user");

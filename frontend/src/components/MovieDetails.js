@@ -12,6 +12,7 @@ const MovieDetails = ({ selectedMovie }) => {
   const [rating, setRating] = useState(0);
   const [ratingHover, setRatingHover] = useState(0);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   useEffect(() => {
     if (userMovies) {
@@ -63,6 +64,7 @@ const MovieDetails = ({ selectedMovie }) => {
         `${BACKEND_URL}/users/${user._id}/movies/add`,
         movieData
       );
+      setSuccess("Thank you for your submission!");
     } catch (error) {
       if (error.response) {
         setError(error.response.data.message || "An error occurred.");
@@ -120,6 +122,7 @@ const MovieDetails = ({ selectedMovie }) => {
           <button type="submit">Submit</button>
         </form>
         {error && <p className="error-message">{error}</p>}
+        {success && <p className="success-message">{success}</p>}
       </div>
       <div className="movie-details-right">
         <h1>{selectedMovie.title}</h1>
