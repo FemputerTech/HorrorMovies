@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../App";
 import "../../styles/Auth.css";
 
-const Login = () => {
+const Login = ({ setMovies }) => {
   const { setUser, handleLogin } = useUserContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -48,7 +48,7 @@ const Login = () => {
 
   return (
     <div className="auth-page" id="login-page">
-      <Header subtractWidth={subtractWidth} />{" "}
+      <Header subtractWidth={subtractWidth} setMovies={setMovies} />
       <main className="auth-main">
         <div className="auth-container" id="login-container">
           <div className="login-title">

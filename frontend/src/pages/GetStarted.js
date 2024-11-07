@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Auth.css";
 
-const GetStarted = () => {
+const GetStarted = ({ setMovies }) => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const GetStarted = () => {
 
   return (
     <div className="auth-page" id="get-started-page">
-      <Header subtractWidth={subtractWidth} />
+      <Header subtractWidth={subtractWidth} setMovies={setMovies} />
       <main className="auth-main">
         <div className="auth-container" id="get-started-container">
           <div className="get-started-title">

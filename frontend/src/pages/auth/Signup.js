@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useUserContext } from "../../App";
 import "../../styles/Auth.css";
 
-const Signup = () => {
+const Signup = ({ setMovies }) => {
   const { setUser, handleLogin } = useUserContext();
   const navigate = useNavigate();
   const location = useLocation();
@@ -53,7 +53,7 @@ const Signup = () => {
 
   return (
     <div className="auth-page" id="signup-page">
-      <Header subtractWidth={subtractWidth} />{" "}
+      <Header subtractWidth={subtractWidth} setMovies={setMovies} />
       <main className="auth-main">
         <div className="auth-container" id="signup-container">
           <div className="signup-title">

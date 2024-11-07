@@ -105,9 +105,18 @@ function App() {
             {/* Public Routes: Only accessible if the user is not logged in */}
             {!isLoggedIn && (
               <>
-                <Route path="/" element={<GetStarted />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
+                <Route
+                  path="/"
+                  element={<GetStarted setMovies={setMovies} />}
+                />
+                <Route
+                  path="/signup"
+                  element={<Signup setMovies={setMovies} />}
+                />
+                <Route
+                  path="/login"
+                  element={<Login setMovies={setMovies} />}
+                />
               </>
             )}
             <Route
