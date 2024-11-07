@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar/Sidebar";
+import MoviesHome from "../components/Movies/MoviesHome";
 import Footer from "../components/Footer";
 import "../styles/Home.css";
 
@@ -24,7 +25,7 @@ const Home = ({ firstName, setSelectedList }) => {
             <h3>Browse. Discover. Prepare to be Scared.</h3>
           </div>
         </div>
-        <h1>Welcome</h1>
+        <MoviesHome />
       </main>
       <Footer />
     </div>
