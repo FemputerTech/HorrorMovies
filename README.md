@@ -8,3 +8,7 @@ The server-side uses Node.js with the MVC architecture.
 
 The client-side uses React.js
 UI is inspired by Netflix
+
+# Future
+
+Personalized recommendations
