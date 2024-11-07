@@ -3,9 +3,8 @@ import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 import "../styles/components/SearchBar.css";
 
-const SearchBar = () => {
+const SearchBar = ({ setMovies }) => {
   const [searchText, setSearchText] = useState("");
-  // const [movies, setMovies] = useState([]);
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   async function handleSubmit(event) {
@@ -14,7 +13,7 @@ const SearchBar = () => {
       const response = await axios.get(
         `${BACKEND_URL}/movies/search/${searchText}`
       );
-      console.log(response.data);
+      setMovies({ title: searchText, list: response.data });
     } catch (error) {
       console.error("not movies found:", error);
     }

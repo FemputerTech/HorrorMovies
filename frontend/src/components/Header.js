@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useUserContext } from "../App";
 import "../styles/components/Header.css";
 
-const Header = ({ firstName, subtractWidth }) => {
+const Header = ({ firstName, subtractWidth, setMovies }) => {
   const { isLoggedIn, handleLogout } = useUserContext();
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,7 +36,7 @@ const Header = ({ firstName, subtractWidth }) => {
           <Logo />
         ) : null}
       </div>
-      <SearchBar />
+      <SearchBar setMovies={setMovies} />
       <button className="button" id="auth-button" onClick={handleLoginLogout}>
         {isLoggedIn ? "Logout" : "Login"}
       </button>

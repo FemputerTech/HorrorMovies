@@ -8,7 +8,11 @@ const Movie = ({ firstName, selectedMovie, setMovies }) => {
   const subtractWidth = 250;
   return (
     <div className="home-page">
-      <Header firstName={firstName} subtractWidth={subtractWidth} />
+      <Header
+        firstName={firstName}
+        subtractWidth={subtractWidth}
+        setMovies={setMovies}
+      />
       <Sidebar setMovies={setMovies} />
       <main className="main-content">
         <MovieDetails selectedMovie={selectedMovie} />
