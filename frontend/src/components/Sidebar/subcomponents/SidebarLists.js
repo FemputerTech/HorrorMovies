@@ -26,6 +26,7 @@ const SidebarLists = ({ decades, subgenres, setSelectedList }) => {
           <ul className="list">
             {subgenres.map((subgenre, index) => (
               <li
+                key={index}
                 className={classNames("list-item", {
                   active: activeSubgenre === subgenre.key,
                   clicked: clickedSubgenre === subgenre.key,
