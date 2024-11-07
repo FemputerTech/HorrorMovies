@@ -54,7 +54,7 @@ const Login = () => {
         setUserMovies(movieData);
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error with fetching movies", error);
     }
   }
 
