@@ -74,13 +74,19 @@ class MovieController {
     const genreIds = [this.genres.horror];
     try {
       const results = await tmdbService.fetchMovieSearch(input);
-      // Filter out movies without poster path
-      const movies = results.filter(
-        (movie) =>
-          movie.poster_path &&
-          movie.genre_ids.some((id) => genreIds.includes(id))
+      // Filter out movies without poster path and that are not in the horror genre
+      const movieIds = results
+        .filter(
+          (movie) =>
+            movie.poster_path &&
+            movie.genre_ids.some((id) => genreIds.includes(id))
+        )
+        .map((movie) => movie.id);
+      // Get the details of the movie
+      const movieDetails = await Promise.all(
+        movieIds.map((id) => tmdbService.fetchMovieDetails(id))
       );
-      res.json(movies);
+      res.json(movieDetails);
     } catch (error) {
       console.error("Error fetching movie search:", error);
       return res
