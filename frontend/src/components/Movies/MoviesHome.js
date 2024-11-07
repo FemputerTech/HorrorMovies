@@ -1,7 +1,8 @@
 import React from "react";
+import "../../styles/components/MoviesHome.css";
 
 const MoviesHome = () => {
-  return <div>MoviesHome</div>;
+  return <div className="movies-home">MoviesHome</div>;
 };
 
 export default MoviesHome;
