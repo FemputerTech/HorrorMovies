@@ -32,7 +32,7 @@ const Signup = () => {
       });
       // On successful signup
       if (response.status === 201) {
-        const userData = response.data.user;
+        const userData = response.data.savedUser;
         setUser(userData);
         handleLogin();
         navigate("/home");
