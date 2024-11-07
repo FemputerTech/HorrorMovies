@@ -54,7 +54,7 @@ function App() {
         if (response.status === 200) {
           const movieData = response.data.movies;
           setUserMovies(movieData);
-          localStorage.setItem("userMovies", JSON.stringify(userMovies));
+          localStorage.setItem("userMovies", JSON.stringify(movieData));
         }
       } catch (error) {
         console.error("Error with fetching movies", error);
@@ -69,6 +69,7 @@ function App() {
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("user");
       localStorage.removeItem("userMovies");
+      setUserMovies(null);
     }
   }, [isLoggedIn, user, userMovies]);
 
