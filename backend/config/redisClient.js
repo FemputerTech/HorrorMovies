@@ -2,9 +2,8 @@
 const redis = require("redis");
 
 // Configure Redis client
-// Use this for production
-// const redisClient = redis.createClient({url: "https://horrormovies-754209826365.us-west1.run.app"});
-const redisClient = redis.createClient();
+const redisUrl = process.env.REDIS_URL;
+const redisClient = redis.createClient({ url: redisUrl });
 
 // Connect to Redis
 redisClient.connect().catch((err) => {

@@ -16,10 +16,7 @@ const PORT = config.port;
 // CORS configuration (the web API's security)
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://horrormovies-754209826365.us-west1.run.app",
-    ],
+    origin: config.frontendURL,
   })
 );
 
