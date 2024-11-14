@@ -5,7 +5,7 @@
  * from TMDB, isolating this functionality from the controller.
  */
 const axios = require("axios");
-const config = require("../config");
+const config = require("../config/config");
 
 class TMDBService {
   constructor() {
