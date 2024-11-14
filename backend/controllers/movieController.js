@@ -8,6 +8,7 @@
  */
 const tmdbService = require("../services/tmdbService");
 const validation = require("../utils/validation");
+const redisClient = require("../config/redisClient");
 
 class MovieController {
   constructor() {
@@ -33,9 +34,21 @@ class MovieController {
       return res.status(400).json({ error: "Invalid tmdb ID" });
     }
 
+    const cacheKey = `details-${tmdbId}`;
+
     try {
-      const details = await tmdbService.fetchMovieDetails(tmdbId);
-      res.json(details);
+      // Check for cached data
+      const cacheData = await redisClient.get(cacheKey);
+      if (cacheData) {
+        console.log(`Returning cached data for ${cacheKey}`);
+        return res.json(JSON.parse(cacheData));
+      } else {
+        // Fetch details from TMDB service if no cached data
+        const details = await tmdbService.fetchMovieDetails(tmdbId);
+        // Set cache data to Redis for 1 hour
+        await redisClient.setEx(cacheKey, 3600, JSON.stringify(details));
+        res.json(details);
+      }
     } catch (error) {
       console.error("Error fetching movie details:", error);
       return res
@@ -57,10 +70,21 @@ class MovieController {
     }
 
     const subgenreId = validation.subgenres[subgenre.toLowerCase()];
+    const cacheKey = `subgenre-${subgenre}`;
 
     try {
-      const movies = await this.getMoviesByKeyword(subgenreId, Number(pages));
-      res.json(movies);
+      // Check for cached data
+      const cacheData = await redisClient.get(cacheKey);
+      if (cacheData) {
+        console.log(`Returning cached data for ${cacheKey}`);
+        return res.json(JSON.parse(cacheData));
+      } else {
+        // Fetch movies from TMDB service if no cached data
+        const movies = await this.getMoviesByKeyword(subgenreId, Number(pages));
+        // Set cache data to Redis for 1 hour
+        await redisClient.setEx(cacheKey, 3600, JSON.stringify(movies));
+        res.json(movies);
+      }
     } catch (error) {
       console.error(`Error fetching movies with subgenre ${subgenre}:`, error);
       return res
@@ -72,21 +96,33 @@ class MovieController {
   async searchMovies(req, res) {
     const { input } = req.params;
     const genreIds = [this.genres.horror];
+    const cacheKey = `query-${input}`;
+
     try {
-      const results = await tmdbService.fetchMovieSearch(input);
-      // Filter out movies without poster path and that are not in the horror genre
-      const movieIds = results
-        .filter(
-          (movie) =>
-            movie.poster_path &&
-            movie.genre_ids.some((id) => genreIds.includes(id))
-        )
-        .map((movie) => movie.id);
-      // Get the details of the movie
-      const movieDetails = await Promise.all(
-        movieIds.map((id) => tmdbService.fetchMovieDetails(id))
-      );
-      res.json(movieDetails);
+      // Check for cached data
+      const cacheData = await redisClient.get(cacheKey);
+      if (cacheData) {
+        console.log(`Returning cached data for ${cacheKey}`);
+        return res.json(JSON.parse(cacheData));
+      } else {
+        // Fetch data from TMDB service if no cached data
+        const results = await tmdbService.fetchMovieSearch(input);
+        // Filter out movies without poster path and that are not in the horror genre
+        const movieIds = results
+          .filter(
+            (movie) =>
+              movie.poster_path &&
+              movie.genre_ids.some((id) => genreIds.includes(id))
+          )
+          .map((movie) => movie.id);
+        // Get the details of the movie
+        const movieDetails = await Promise.all(
+          movieIds.map((id) => tmdbService.fetchMovieDetails(id))
+        );
+        // Set cache data to Redis for 1 hour
+        await redisClient.setEx(cacheKey, 3600, JSON.stringify(movieDetails));
+        res.json(movieDetails);
+      }
     } catch (error) {
       console.error("Error fetching movie search:", error);
       return res
