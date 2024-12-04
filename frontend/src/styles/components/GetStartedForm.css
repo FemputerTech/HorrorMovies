@@ -1,0 +1,13 @@
+/* Get Started Form css */
+.get-started-form {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 4px;
+  width: 100%;
+  gap: 10px;
+}
+
+#gs-email {
+  margin-top: 4px;
+  width: 250px;
+}

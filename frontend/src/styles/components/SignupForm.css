@@ -1,0 +1,23 @@
+/* Signup Form css */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+
+#su-email {
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1em;
+  font-family: var(--font);
+  outline: none;
+  margin-top: 4px;
+  padding: 10px 0;
+}
+
+#signup-button {
+  align-self: center;
+  min-width: 160px;
+}

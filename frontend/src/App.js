@@ -1,4 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
+import AuthPage from "./pages/AuthPage";
+
 import axios from "axios";
 import {
   BrowserRouter as Router,
@@ -6,9 +8,9 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import GetStarted from "./pages/GetStarted";
-import Signup from "./pages/auth/Signup";
-import Login from "./pages/auth/Login";
+// import GetStarted from "./pages/GetStarted";
+// import Signup from "./pages/auth/Signup";
+// import Login from "./pages/auth/Login";
 import Home from "./pages/Home";
 import MovieList from "./pages/home/MovieList";
 import Movie from "./pages/home/Movie";
@@ -104,20 +106,7 @@ function App() {
           <Routes>
             {/* Public Routes: Only accessible if the user is not logged in */}
             {!isLoggedIn && (
-              <>
-                <Route
-                  path="/"
-                  element={<GetStarted setMovies={setMovies} />}
-                />
-                <Route
-                  path="/signup"
-                  element={<Signup setMovies={setMovies} />}
-                />
-                <Route
-                  path="/login"
-                  element={<Login setMovies={setMovies} />}
-                />
-              </>
+              <Route path="/" element={<AuthPage setMovies={setMovies} />} />
             )}
             <Route
               path="/home"

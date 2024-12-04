@@ -12,12 +12,12 @@ const Header = ({ firstName, subtractWidth, setMovies }) => {
 
   const handleLoginLogout = () => {
     if (!isLoggedIn) {
-      // User is not logged in, navigate to login page
-      navigate("/login");
+      // User is not logged in, render the login view
+      navigate("/", { state: { authView: "login" } });
     } else {
       // User is logged in, handle logout and navigate to get started page
       handleLogout();
-      navigate("/");
+      navigate("/", { state: { authView: "getStarted" } });
     }
   };
 
